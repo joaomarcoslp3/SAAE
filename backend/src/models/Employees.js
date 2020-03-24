@@ -11,6 +11,10 @@ class Employees extends Model {
       sequelize
     })
   }
+
+  static associate(models){
+    this.hasMany(models.Complaint, { foreignKey: 'user_id', as: 'complaints' })
+  }
 }
 
 
