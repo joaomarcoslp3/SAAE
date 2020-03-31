@@ -21,10 +21,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      adress: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       email: {
         allowNull: true,
         type: Sequelize.STRING
@@ -37,7 +33,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    },
+    {
+      indexes: [
+          {
+              unique: true,
+              fields: ['idElet']
+          }
+      ]
     });
+    
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('users');

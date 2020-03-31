@@ -6,14 +6,9 @@ class Employees extends Model {
       name: DataTypes.STRING,
       codFunc: DataTypes.INTEGER,
       password: DataTypes.STRING,
-      typeOf: DataTypes.INTEGER,
     }, {
       sequelize
     })
-  }
-
-  static associate(models){
-    this.hasMany(models.Complaint, { foreignKey: 'user_id', as: 'complaints' })
   }
 }
 

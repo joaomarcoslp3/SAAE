@@ -11,8 +11,8 @@ class Complaint extends Model {
     })
   }
 
-  static associate(models){
-    this.belongsTo(models.Users, { foreignKey: 'user_id', as: 'autor' })
+  static associate(models) {
+    this.belongsTo(models.Users, {  foreignKey: 'user_id', as: 'user' })
   }
 }
 

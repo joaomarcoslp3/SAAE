@@ -1,14 +1,7 @@
 const express = require('express');
-<<<<<<< HEAD
-const empCtrl = require('./controllers/employeesController');
-
-const routes = express.Router();
-
-routes.get('/employees', empCtrl.index);
-routes.post('/employees', empCtrl.store);
-=======
 const userController = require('./controllers/usersController');
 const complaintController = require('./controllers/complaintsController');
+const employeesController = require('./controllers/employeesController')
 
 
 const routes = express.Router();
@@ -24,11 +17,12 @@ routes.delete('/users/delete:idElet', userController.remove);
 routes.post('/users/:user_id/complaint/', complaintController.store)
 routes.get('/complaint/findAll', complaintController.index);
 routes.get('/users/:user_id/complaint/findOne', complaintController.findOne);
-routes.get('/users/:user_id/complaint/delete:id', complaintController.remove);
+routes.delete('/users/:user_id/complaint/delete:id', complaintController.remove);
 
 //rotas encarregados
+routes.get('/employees/find', employeesController.index);
+routes.post('/employees/create', employeesController.store);
+routes.delete('/employees/delete:codFunc', employeesController.remove);
 
-
->>>>>>> a
 
 module.exports = routes;

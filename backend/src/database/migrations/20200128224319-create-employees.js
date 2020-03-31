@@ -14,15 +14,12 @@ module.exports = {
       },
       codFunc: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        unique: true
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      typeOf: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +29,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    },
+    {
+      indexes: [
+          {
+              unique: true,
+              fields: ['codFunc']
+          }
+      ]
     });
   },
   down: (queryInterface, Sequelize) => {
