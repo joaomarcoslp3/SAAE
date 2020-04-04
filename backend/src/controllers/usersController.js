@@ -1,4 +1,4 @@
-const Users = require('../models/Users')
+const Users = require('../models/Users');
 
 module.exports = {
   async index(req, res){
@@ -16,11 +16,19 @@ module.exports = {
   },
 
   async store(req, res){ 
+    try{
     const {name, idElet, password, adress, email} = req.body;
+
+    if(await Users.findOne( { idElet } )){
+    res.status(400).send({ error:'idElet already exists' })
+    }
     
     const users = await Users.create({ name, idElet, password, adress, email });
 
     return res.json(users);
+  }catch(err){
+    res.status(400).send({ error:'Registration failed' })
+  }
   },
 
   async remove(req, res){ 
