@@ -12,6 +12,7 @@ routes.get('/users/find', userController.index);
 routes.get('/users/findone:idElet', userController.findOne);
 routes.post('/users/create', userController.store);
 routes.delete('/users/delete:idElet', userController.remove);
+routes.post('/users/login', userController.auth);
 
 //rotas reclamações
 routes.post('/users/:user_id/complaint/', complaintController.store)

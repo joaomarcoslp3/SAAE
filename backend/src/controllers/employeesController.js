@@ -1,4 +1,6 @@
-const Employees = require('../models/Employees')
+const Employees = require('../models/Employees');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   async index(req, res){
@@ -8,21 +10,38 @@ module.exports = {
   },
 
   async store(req, res){ 
-    try{
-    const {name, codFunc, password} = req.body;
+    const employeesData = {
+      name: req.body.name,
+      codFunc: req.body.codFunc,
+      password: req.body.password,
+    };
 
-    if(await Employees.findOne( { codFunc } )){
-    res.status(400).send({ error:'codFunc already exists' })
-    }
-    
-
-    const employees = await Employees.create({ name, codFunc, password });
-
-    return res.json(employees);
-    }catch(err){
-      res.status(400).send({ error:'Registration failed' })
-    }
-  },
+      Employees.findOne({
+        where: {
+          codFunc: req.body.codFunc
+        }
+        }).then(employees => {
+          if(!employees){
+            const hash = bcrypt.hashSync(employeesData.password, 10);
+            employeesData.password = hash;
+            Employees.create(employeesData)
+            .then(employees =>{
+              let token = jwt.sign(employees.dataValues, process.env.SECRET_KEY, {
+                expiresIn: 1440
+              });
+              res.json({token: token})
+            })
+            .catch(err => {
+              res.status(400).send('error:' + err)
+            })
+          }else{
+            res.status(400).json({ error: 'Employees already exists' })
+          }
+        })
+          .catch(err => {
+            res.status(400).send('error:' + err)
+          })
+      },
   async remove(req, res){ 
     const employees = await Employees.destroy({where:{
         codFunc: req.params.codFunc
