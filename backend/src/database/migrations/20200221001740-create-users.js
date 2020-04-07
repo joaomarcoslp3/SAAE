@@ -15,7 +15,8 @@ module.exports = {
       idElet: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
+        len: [ 11,11 ]
       },
       password: {
         allowNull: false,
