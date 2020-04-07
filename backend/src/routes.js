@@ -24,6 +24,8 @@ routes.delete('/users/:user_id/complaint/delete:id', complaintController.remove)
 routes.get('/employees/find', employeesController.index);
 routes.post('/employees/create', employeesController.store);
 routes.delete('/employees/delete:codFunc', employeesController.remove);
+routes.post('/employees/login', employeesController.auth);
+
 
 
 module.exports = routes;

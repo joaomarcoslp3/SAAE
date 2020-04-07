@@ -7,6 +7,7 @@ const Complaint = require('../models/Complaints');
 
 const connection = new Sequelize(dbConfig);
 
+
 Employees.init(connection);
 
 
