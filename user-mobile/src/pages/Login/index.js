@@ -10,6 +10,7 @@ import {
   Keyboard
 } from 'react-native';
 
+
 import styles from './styles'
 
 export default function Login() {
@@ -19,7 +20,7 @@ export default function Login() {
 
   useEffect(()=>{
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    keyboardDiHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
 
 
     Animated.parallel([
@@ -39,15 +40,14 @@ export default function Login() {
   function keyboardDidShow(){
     Animated.parallel([
       Animated.timing(logo.x, {
-        toValue: 55,
+        toValue: 70,
         duration: 100
       }),
       Animated.timing(logo.y, {
-        toValue: 65,
+        toValue: 100,
         duration: 100
       }),
-      
-    ])
+    ]).start();
   };
   function keyboardDidHide(){
     Animated.parallel([
@@ -58,9 +58,8 @@ export default function Login() {
       Animated.timing(logo.y, {
         toValue: 155,
         duration: 100
-      }),
-      
-    ])
+      }),   
+    ]).start();
   };
 
   return(
@@ -69,7 +68,7 @@ export default function Login() {
         <Animated.Image
           style = {{
             width: logo.x,
-            height: logo.y 
+            height: logo.y,
           }}
           source = {require('../../assets/logo.png')}
         />
@@ -98,6 +97,7 @@ export default function Login() {
         placeholder = "Senha"
         autoCorrect = { false }
         onChangeText = { ()=> {}}
+        secureTextEntry={true}
         />
 
         <TouchableOpacity  style = {styles.btnSubmit}> 
