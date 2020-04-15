@@ -16,7 +16,7 @@ class Register extends Component{
   onChange(e){
     this.setState({[e.target.name]: e.target.value});
   }
-  onSumit(e){
+  onSubmit(e){
     e.preventDefault();
     
     const employees = {
@@ -26,8 +26,8 @@ class Register extends Component{
     }
 
     register(employees).then(res => {
-      if(res)
-      this.props.history.push(`\login`)
+
+      this.props.history.push(`/`)
     })
   }
 
@@ -42,6 +42,7 @@ class Register extends Component{
               </h1>
               <div className="form-group">
                   <label htmlFor="name">Nome do Funcionário:</label>
+                  <br/>
                    <input type="text"
                     className ="from-control"
                     name = "name"
@@ -52,6 +53,7 @@ class Register extends Component{
                 </div>
                 <div className="form-group">
                   <label htmlFor="codFunc">Código de Funcionário:</label>
+                  <br/>
                    <input type="text"
                     className ="from-control"
                     name = "codFunc"
@@ -62,6 +64,7 @@ class Register extends Component{
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Senha:</label>
+                  <br/>
                    <input type="password"
                     className ="from-control"
                     name = "password"
@@ -73,7 +76,7 @@ class Register extends Component{
                 <button 
                 type = "submit"
                 className="btn btn-lg btn-primary btn-block">
-                  Login
+                  Cadastre
                 </button>
             </form>
           </div>

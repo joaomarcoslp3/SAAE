@@ -8,14 +8,14 @@ class Login extends Component{
       codFunc: '',
       password: ''
     }
-    this.onChange = this.onChange.bind(this) 
-    this.onSubmit = this.onSubmit.bind(this) 
 
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
   }
   onChange(e){
     this.setState({[e.target.name]: e.target.value});
   }
-  onSumit(e){
+  onSubmit(e){
     e.preventDefault();
     
     const employees = {
@@ -24,8 +24,7 @@ class Login extends Component{
     }
 
     login(employees).then(res => {
-      if(res)
-      this.props.history.push(`\register`)
+      this.props.history.push(`/`)
     })
   }
 
@@ -40,6 +39,7 @@ class Login extends Component{
               </h1>
                 <div className="form-group">
                   <label htmlFor="codFunc">Código de Funcionário:</label>
+                  <br></br>
                    <input type="text"
                     className ="from-control"
                     name = "codFunc"
@@ -50,6 +50,7 @@ class Login extends Component{
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Senha:</label>
+                  <br></br>
                    <input type="password"
                     className ="from-control"
                     name = "password"
