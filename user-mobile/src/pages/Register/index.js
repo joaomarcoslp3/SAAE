@@ -3,7 +3,6 @@ import { Feather } from '@expo/vector-icons'
 import { 
   KeyboardAvoidingView,
   View, 
-  Image, 
   TextInput, 
   TouchableOpacity, 
   Text, 
@@ -27,8 +26,7 @@ export default function Register() {
   const [opacity] = useState(new Animated.Value(0));
 
   useEffect(()=>{
-
-
+    
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -48,11 +46,13 @@ export default function Register() {
     <KeyboardAvoidingView style = {styles.background}>
       
       <View style = {styles.header}>
+        <View style = {styles.headerBtn}>
         <TouchableOpacity onPress = { navigateToLogin}>
-          <Feather name = "arrow-left" size ={27} color = '#005db8'/>
+          <Feather name = "arrow-left" size ={24} color = '#35AAFF'/>
         </TouchableOpacity>
-        <Text style ={ styles.headerText}>Crie sua conta</Text>
-        
+        </View>
+        <View style = {styles.viewHT}>
+        </View>
       </View>
 
       <Animated.View 
@@ -76,7 +76,7 @@ export default function Register() {
        <View style = { styles.subWithInfo}> 
         <Text style = {styles.submitText}>Insira seu Id Eletrônico </Text>
         <TouchableOpacity onPress = { navigateToRegisterInfo }>
-          <Feather name = "info" size = {18} color= "#005db8" />
+          <Feather name = "info" size = {18} color= "#35AAFF" />
         </TouchableOpacity>
       </View> 
         <TextInput

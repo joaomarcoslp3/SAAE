@@ -5,18 +5,22 @@ export default StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#22262e',
     paddingTop: Constants.statusBarHeight + 20,
   },
   header: {
+    paddingLeft: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignContent: 'flex-end'
+    alignContent: 'center'
+  },
+  viewHT: {
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   headerText: {
     fontSize: 20,
-    color: '#FFF'
+    color: '#FFF',
+    alignItems: 'center'
   },
   headerBtn: {
     alignItems: 'flex-start'
@@ -26,7 +30,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 55,
-    width: '90%',
+    width: '100%',
     paddingBottom: 50
   },
   input: {
@@ -60,7 +64,7 @@ export default StyleSheet.create({
   },
   submitInfo: {
     fontSize: 15,
-    color: '#737380'
+    color: '#a7a7c9'
   },
   subWithInfo: {
     flexDirection: 'row',
