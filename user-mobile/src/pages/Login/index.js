@@ -9,11 +9,18 @@ import {
   Animated,
   Keyboard
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 
 import styles from './styles'
 
 export default function Login() {
+  const navigation = useNavigation();
+
+  function navigateToRegister(){
+    navigation.navigate('Register')
+  }
+
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x:130, y: 155}));
@@ -104,7 +111,7 @@ export default function Login() {
           <Text  style = {styles.submitText}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity  style = {styles.btnRegister}> 
+        <TouchableOpacity  style = {styles.btnRegister} onPress = { navigateToRegister}> 
           <Text style = {styles.registerText}>Criar Conta</Text>
         </TouchableOpacity>
 
