@@ -39,7 +39,7 @@ module.exports = {
             Users.create(userData)
             .then(user =>{
               let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-                expiresIn: 1440
+                expiresIn: 42075360
               });
               res.status(200).json({token: token})
             })
@@ -70,7 +70,7 @@ module.exports = {
    .then(user =>{
     if(bcrypt.compareSync(req.body.password, user.password)){
       let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-        expiresIn: 86400
+        expiresIn: 42075360
       });
       res.status(200).json({ token: token})
     }else{
