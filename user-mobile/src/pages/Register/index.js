@@ -11,9 +11,16 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import api from '../../services/api';
 import styles from './styles'
 
 export default function Register() {
+  const [name, setName] = useState('');
+  const [idElet, setIdElet] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+
+
   const navigation = useNavigation();
 
   function navigateToLogin(){
@@ -71,7 +78,8 @@ export default function Register() {
         style = {styles.input}
         placeholder = "Nome"
         autoCorrect = { true}
-        onChangeText = { ()=> {}}
+        value = {name}
+        onChangeText = { setName }
         />
        <View style = { styles.subWithInfo}> 
         <Text style = {styles.submitText}>Insira seu Id Eletrônico </Text>
@@ -83,7 +91,9 @@ export default function Register() {
         style = {styles.input}
         placeholder = "Id Eletrônico"
         autoCorrect = { false }
-        onChangeText = { ()=> {}}
+        autoCapitalize = "none"
+        value = {idElet}
+        onChangeText = { setIdElet }
         />
 
       <Text style = {styles.submitText}>Insira sua Senha</Text>
@@ -91,7 +101,8 @@ export default function Register() {
         style = {styles.input}
         placeholder = "Senha"
         autoCorrect = { false }
-        onChangeText = { ()=> {}}
+        value = {password}
+        onChangeText = { setPassword }
         secureTextEntry={true}
         />
         <View style = { styles.subWithInfo}>
@@ -102,7 +113,8 @@ export default function Register() {
         style = {styles.input}
         placeholder = "E-mail"
         autoCorrect = { false }
-        onChangeText = { ()=> {}}
+        value = {email}
+        onChangeText = { setEmail }
         keyboardType = 'email-address'
         />
 

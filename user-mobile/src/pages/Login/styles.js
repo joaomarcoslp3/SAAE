@@ -44,5 +44,10 @@ export default StyleSheet.create({
   },
   registerText: { 
     color: '#FFF'
+  },
+  errorMsg:{
+    color: '#FFF',
+    fontSize: 18,
+    paddingBottom: 15
   }
 });

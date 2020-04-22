@@ -49,16 +49,16 @@ module.exports = {
     return res.json(employees)
   },
   async auth(req, res){
-    Employees.findOne({
+    const employees = Employees.findOne({
       where:{
         codFunc: req.body.codFunc
       }
-    }).then(employees=>{
+    }).then(employees =>{
       if(bcrypt.compareSync(req.body.password, employees.password)){
         let token = jwt.sign(employees.dataValues, process.env.SECRET_KEY, {
           expiresIn: 86400
         });
-        res.status(200).json({ token: token})
+        res.status(200).json({ token: token, employees: employees })
       }else{
         res.status(400).send('Wrong password')
       }

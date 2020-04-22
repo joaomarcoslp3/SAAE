@@ -1,9 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default function Complaint() {
   return(
-    <View/>
+    <View>
+      <Text>Complaint</Text>
+    </View>
     
   )
 }

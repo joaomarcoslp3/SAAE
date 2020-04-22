@@ -28,7 +28,7 @@ module.exports = {
       email: req.body.email,
     };
 
-      Users.findOne({
+      const user = Users.findOne({
         where: {
           idElet: req.body.idElet
         }
@@ -41,7 +41,7 @@ module.exports = {
               let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
                 expiresIn: 42075360
               });
-              res.status(200).json({token: token})
+              res.status(200).json({token: token, user: user})
             })
             .catch(err => {
               res.status(400).send('error:' + err)
@@ -62,23 +62,23 @@ module.exports = {
     return res.json(users)
   },
   async auth(req, res){
-   Users.findOne({
-     where: {
-       idElet: req.body.idElet
-     }
-   }) 
-   .then(user =>{
-    if(bcrypt.compareSync(req.body.password, user.password)){
-      let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
-        expiresIn: 42075360
-      });
-      res.status(200).json({ token: token})
-    }else{
-      res.status(400).send('Wrong password')
-    }
-   })
-   .catch(err => {
-     res.status(400).send('error:' +err)
-   })
+    const user = Users.findOne({
+      where: {
+        idElet: req.body.idElet
+      }
+    }) 
+    .then(user =>{
+      if(bcrypt.compareSync(req.body.password, user.password)){
+        let token = jwt.sign(user.dataValues, process.env.SECRET_KEY, {
+          expiresIn: 42075360
+        });
+        res.status(200).json({ token: token, user: user })
+      }else{
+        res.status(400).send('Wrong password')
+      }
+    })
+    .catch(err => {
+      res.status(400).send('error:' +err)
+    })
   }
 }

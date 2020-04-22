@@ -7,14 +7,21 @@ import {
   TouchableOpacity, 
   Text, 
   Animated,
-  Keyboard
+  Keyboard,
+  AsyncStorage
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 
+import api from '../../services/api'
+import styles from './styles';
 
-import styles from './styles'
 
 export default function Login() {
+  const [idElet, setIdElet] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
+
   const navigation = useNavigation();
 
   function navigateToRegister(){
@@ -69,6 +76,32 @@ export default function Login() {
     ]).start();
   };
 
+  async function _login (){
+    // try{
+    //   const res =  api.post('/users/login',  {
+    //     idElet: idElet,
+    //     password: password
+    //   });
+    //   const { user, token } = res.data;
+  
+    //   await AsyncStorage.multiSet([
+    //     ['@SAAEapi:token', token],
+    //     ['@SAAEapi:user', JSON.stringify(user)]
+    //   ]);
+    //   navigation.navigate('Complaint')
+    // }catch(err){
+    //   setErrorMsg('Id Eletrônico ou senha incorretos!')
+    // }
+    if(idElet == '14131313131' && password == 'abcd'){
+      await AsyncStorage.setItem('isLoggedIn', '1');
+      navigation.navigate('Complaint')
+    }else{
+      setErrorMsg('Id Eletrônico ou senha incorretos!')
+    }
+
+
+  }
+
   return(
     <KeyboardAvoidingView style = {styles.background}>
       <View style = {styles.containerLogo}>
@@ -92,22 +125,26 @@ export default function Login() {
           }
         ]}
       >
+        <Text style ={styles.errorMsg}>{errorMsg}</Text>
         <TextInput
         style = {styles.input}
         placeholder = "Id Eletrônico"
         autoCorrect = { false }
-        onChangeText = { ()=> {}}
+        autoCapitalize = "none"
+        value = {idElet}
+        onChangeText = { setIdElet }
         />
 
         <TextInput
         style = {styles.input}
         placeholder = "Senha"
         autoCorrect = { false }
-        onChangeText = { ()=> {}}
+        value = {password}
+        onChangeText = { setPassword }
         secureTextEntry={true}
         />
 
-        <TouchableOpacity  style = {styles.btnSubmit}> 
+        <TouchableOpacity  style = {styles.btnSubmit} onPress ={ _login }> 
           <Text  style = {styles.submitText}>Acessar</Text>
         </TouchableOpacity>
 
