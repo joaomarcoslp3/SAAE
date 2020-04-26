@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
+import styles from './styles';
+
 
 export default function Complaint() {
+  async function _logout (){
+    await AsyncStorage.clear();
+  }
+
   return(
-    <View>
-      <Text>Complaint</Text>
+    <View style = {styles.background}>
+      <TouchableOpacity onPress = {_logout}><Text>Logout</Text></TouchableOpacity>
     </View>
     
   )

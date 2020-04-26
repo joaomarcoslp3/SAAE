@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import api from '../../services/api'
 import styles from './styles';
 
 
@@ -35,7 +34,6 @@ export default function Login() {
   useEffect(()=>{
     keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
     keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-
 
     Animated.parallel([
       Animated.spring(offset.y, {
@@ -75,7 +73,6 @@ export default function Login() {
       }),   
     ]).start();
   };
-
   async function _login (){
     // try{
     //   const res =  api.post('/users/login',  {
@@ -92,15 +89,13 @@ export default function Login() {
     // }catch(err){
     //   setErrorMsg('Id Eletrônico ou senha incorretos!')
     // }
-    if(idElet == '14131313131' && password == 'abcd'){
-      await AsyncStorage.setItem('isLoggedIn', '1');
-      navigation.navigate('Complaint')
+    if(idElet == '1413' && password == 'abcd'){
+      await AsyncStorage.setItem('@SAAEapi:token', 'token');
     }else{
       setErrorMsg('Id Eletrônico ou senha incorretos!')
     }
-
-
   }
+
 
   return(
     <KeyboardAvoidingView style = {styles.background}>
@@ -154,6 +149,5 @@ export default function Login() {
 
       </Animated.View>
     </KeyboardAvoidingView>
-
   )
 }
