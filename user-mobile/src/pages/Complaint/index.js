@@ -10,7 +10,7 @@ export default function Complaint() {
 
   return(
     <View style = {styles.background}>
-      <TouchableOpacity onPress = {_logout}><Text>Logout</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {_logout}><Text style ={{ color: '#FFF'}}>Logout</Text></TouchableOpacity>
     </View>
     
   )
