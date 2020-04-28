@@ -32,6 +32,7 @@ export default function AppRoutes(){
         style: {
           backgroundColor: '#004384',
           borderTopColor: 'rgba(255,255,255, 0.2)'
+          
         },
         activeTintColor: '#FFF',
         inactiveTintColor: '#92929c'

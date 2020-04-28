@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { 
   KeyboardAvoidingView,
   View, 
@@ -11,14 +11,15 @@ import {
   AsyncStorage
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../provider/AuthProvider'
 
 import styles from './styles';
-
 
 export default function Login() {
   const [idElet, setIdElet] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const auth = useContext(AuthContext);
 
 
   const navigation = useNavigation();
@@ -91,6 +92,12 @@ export default function Login() {
     // }
     if(idElet == '1413' && password == 'abcd'){
       await AsyncStorage.setItem('@SAAEapi:token', 'token');
+      const token = AsyncStorage.getItem('@SAAEapi:token');
+      auth.setToken(token);
+      auth.setSigned(true);
+      console.log(auth.signed);
+      console.log(auth.token);
+
     }else{
       setErrorMsg('Id Eletrônico ou senha incorretos!')
     }
