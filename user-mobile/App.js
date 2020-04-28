@@ -1,15 +1,15 @@
 import React, {useContext} from 'react';
-import SplashScreen from './src/routes/SplashScreen'
 import Routes from './src/routes/'
 
 import { NavigationContainer } from '@react-navigation/native';
+import {AuthProvider}  from './src/provider/AuthProvider'
 
 export default function App() {
-  
-
   return(
     <NavigationContainer>
-      <Routes/>
+      <AuthProvider>
+        <Routes/>
+      </AuthProvider>
     </NavigationContainer>
   )
 }

@@ -1,10 +1,19 @@
 import React, {useState} from 'react';
+import {AsyncStorage} from 'react-native'
 
 const AuthContext = React.createContext();
 
-const AuthProvider = (props) => {
+export const AuthProvider = ({children}) => {
   const [signed, setSigned] = useState(false);
   const [token, setToken] = useState('');
+
+  // React.useEffect(()=> {
+  //   const token = AsyncStorage.getItem('@SAAEapi:token')
+  //   if(token){
+  //     setSigned(true)
+  //     setToken(token)
+  //   }
+  // });
 
 
     return(
@@ -16,10 +25,10 @@ const AuthProvider = (props) => {
           setSigned
         }}
       >
-        {props.children}
+        {children}
       </AuthContext.Provider>
     )
   }
 
 
-export {AuthProvider, AuthContext};
+export default AuthContext;

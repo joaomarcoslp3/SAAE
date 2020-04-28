@@ -11,7 +11,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../../provider/AuthProvider'
+import AuthContext from '../../provider/AuthProvider'
 
 import styles from './styles';
 
@@ -86,7 +86,9 @@ export default function Login() {
     //     ['@SAAEapi:token', token],
     //     ['@SAAEapi:user', JSON.stringify(user)]
     //   ]);
-    //   navigation.navigate('Complaint')
+    //    const token = AsyncStorage.getItem('@SAAEapi:token');
+    //    auth.setToken(token);
+    //    auth.setSigned(true);
     // }catch(err){
     //   setErrorMsg('Id Eletrônico ou senha incorretos!')
     // }
@@ -95,9 +97,6 @@ export default function Login() {
       const token = AsyncStorage.getItem('@SAAEapi:token');
       auth.setToken(token);
       auth.setSigned(true);
-      console.log(auth.signed);
-      console.log(auth.token);
-
     }else{
       setErrorMsg('Id Eletrônico ou senha incorretos!')
     }
