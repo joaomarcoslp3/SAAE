@@ -7,7 +7,7 @@ import {
   TouchableOpacity, 
   Text, 
   Animated,
-  Keyboard
+  Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -47,6 +47,28 @@ export default function Register() {
     ]).start();
 
   }, []);
+
+  async function _register(){
+    // try{
+    //   const res =  api.post('/users/login',  {
+    //     name: name,
+    //     idElet: idElet,
+    //     password: password,
+    //     email: email;
+    //   });
+    //   const { user, token } = res.data;
+  
+    //   await AsyncStorage.multiSet([
+    //     ['@SAAEapi:token', token],
+    //     ['@SAAEapi:user', JSON.stringify(user)]
+    //   ]);
+    //    const token = AsyncStorage.getItem('@SAAEapi:token');
+    //    auth.setToken(token);
+    //    auth.setSigned(true);
+    // }catch(err){
+    //   Alert.alert('Ops!', 'Ouve um erro em seu cadastro revise as informações e tente novamente')
+    // }
+  }
 
 
   return(
@@ -118,7 +140,7 @@ export default function Register() {
         keyboardType = 'email-address'
         />
 
-        <TouchableOpacity  style = {styles.btnSubmit}> 
+        <TouchableOpacity  style = {styles.btnSubmit} onClick = {_register}> 
           <Text  style = {styles.submitText}>Criar Conta</Text>
         </TouchableOpacity>
 
