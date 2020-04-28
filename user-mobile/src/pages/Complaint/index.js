@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
+import AuthContext from '../../provider/AuthProvider'
 import styles from './styles';
 
 
 export default function Complaint() {
+  const auth = useContext(AuthContext);
   async function _logout (){
-    await AsyncStorage.clear();
+    await AsyncStorage.removeItem('token');
+    auth.setSigned(false);
   }
 
   return(
