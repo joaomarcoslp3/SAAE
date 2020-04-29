@@ -86,7 +86,7 @@ export default function Login() {
     //     ['@SAAEapi:token', token],
     //     ['@SAAEapi:user', JSON.stringify(user)]
     //   ]);
-    //    const token = AsyncStorage.getItem('@SAAEapi:token');
+    //    const token = await AsyncStorage.getItem('@SAAEapi:token');
     //    auth.setToken(token);
     //    auth.setSigned(true);
     // }catch(err){
@@ -94,7 +94,7 @@ export default function Login() {
     // }
     if(idElet == '1413' && password == 'abcd'){
       await AsyncStorage.setItem('@SAAEapi:token', 'token');
-      const token = AsyncStorage.getItem('@SAAEapi:token');
+      const token = await AsyncStorage.getItem('@SAAEapi:token');
       auth.setToken(token);
       auth.setSigned(true);
     }else{

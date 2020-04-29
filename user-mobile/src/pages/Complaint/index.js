@@ -7,7 +7,7 @@ import styles from './styles';
 export default function Complaint() {
   const auth = useContext(AuthContext);
   async function _logout (){
-    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('@SAAEapi:token');
     auth.setSigned(false);
   }
 

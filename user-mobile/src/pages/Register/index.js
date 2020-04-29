@@ -62,7 +62,7 @@ export default function Register() {
     //     ['@SAAEapi:token', token],
     //     ['@SAAEapi:user', JSON.stringify(user)]
     //   ]);
-    //    const token = AsyncStorage.getItem('@SAAEapi:token');
+    //    const token = await AsyncStorage.getItem('@SAAEapi:token');
     //    auth.setToken(token);
     //    auth.setSigned(true);
     // }catch(err){
