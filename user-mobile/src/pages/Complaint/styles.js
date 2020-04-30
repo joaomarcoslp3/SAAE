@@ -6,5 +6,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#22262e',
+  },
+  pageName: {
+    color: '#FFF'
   }
 });
