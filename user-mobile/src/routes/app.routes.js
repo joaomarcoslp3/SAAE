@@ -7,6 +7,7 @@ const AppTab = createBottomTabNavigator();
 
 import Complaint from '../pages/Complaint';
 import SAAEweb from '../pages/SAAEweb';
+import SettingsPage from '../pages/SettingsPage';
 
 export default function AppRoutes(){
   const icons = {
@@ -17,6 +18,10 @@ export default function AppRoutes(){
     SAAEweb: {
       lib: Feather,
       name: 'file-plus'
+    },
+    SettingsPage: {
+      lib: Feather,
+      name: 'settings'
     }
   }
 
@@ -46,6 +51,10 @@ export default function AppRoutes(){
         name = "SAAEweb" 
         component = {SAAEweb} 
         options={{title: "2ª Via"}}/>
+        <AppTab.Screen 
+        name = "SettingsPage" 
+        component = {SettingsPage} 
+        options={{title: "Configurações"}}/>
     </AppTab.Navigator>
   )
 }
