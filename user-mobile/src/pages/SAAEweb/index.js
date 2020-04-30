@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 export default function SAAEweb() {
