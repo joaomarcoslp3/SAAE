@@ -1,13 +1,15 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack'
 
 import { Feather } from '@expo/vector-icons';
 
 const AppTab = createBottomTabNavigator();
 
-import Complaint from '../pages/Complaint';
 import SAAEweb from '../pages/SAAEweb';
 import SettingsPage from '../pages/SettingsPage';
+import ComplaintRoutes from './complaint.routes';
+
 
 export default function AppRoutes(){
   const icons = {
@@ -45,7 +47,7 @@ export default function AppRoutes(){
     >
       <AppTab.Screen 
         name = "Complaint" 
-        component = {Complaint} 
+        component = {ComplaintRoutes} 
         options={{title:"Reclamações"}}/>
       <AppTab.Screen 
         name = "SAAEweb" 
