@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../../provider/AuthProvider';
+import {showMessage} from 'react-native-flash-message'
 
 
 import api from '../../services/api';
@@ -56,7 +57,7 @@ export default function Register() {
     //     name: name,
     //     idElet: idElet,
     //     password: password,
-    //     email: email;
+    //     email: email
     //   });
     //   const { user, token } = res.data;
   
@@ -68,8 +69,23 @@ export default function Register() {
     //    auth.setToken(token);
     //    auth.setSigned(true);
     // }catch(err){
-    //   Alert.alert('Ops!', 'Ouve um erro em seu cadastro revise as informações e tente novamente')
+    //   showMessage({
+    //     message: 'Ops!',
+    //     description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
+    //     type: 'danger',
+    //     duration: 2000,
+    //     titleStyle: { fontWeight: 'bold', fontSize: 20},
+    //     textStyle: {fontSize: 15} 
+    //   })
     // }
+    showMessage({
+      message: 'Ops!',
+      description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
+      type: 'danger',
+      duration: 2000,
+      titleStyle: { fontWeight: 'bold', fontSize: 20},
+      textStyle: {fontSize: 15} 
+    })
   }
 
 
@@ -145,8 +161,6 @@ export default function Register() {
         <TouchableOpacity  style = {styles.btnSubmit} onClick = {_register}> 
           <Text  style = {styles.submitText}>Criar Conta</Text>
         </TouchableOpacity>
-
-
       </Animated.View>
     </KeyboardAvoidingView>
 
