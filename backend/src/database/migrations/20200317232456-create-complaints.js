@@ -23,7 +23,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.CHAR
       },
-      complaint_location: {
+      complaint_latitude: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      complaint_longitude: {
         allowNull: false,
         type: Sequelize.STRING
       },

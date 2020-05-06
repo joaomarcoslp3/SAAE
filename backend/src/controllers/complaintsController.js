@@ -12,7 +12,7 @@ module.exports ={
   async store(req, res) {
     
     const { user_id } = req.params;
-    const { complaint_text, complaint_picture, complaint_location } = req.body;
+    const { complaint_text, complaint_picture, complaint_latitude, complaint_longitude } = req.body;
 
     const user = await User.findByPk(user_id);
 
@@ -23,7 +23,8 @@ module.exports ={
     const complaint = await Complaints.create({
       complaint_text,
       complaint_picture,
-      complaint_location,
+      complaint_latitude,
+       complaint_longitude,
       user_id
     });
 

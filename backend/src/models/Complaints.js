@@ -5,7 +5,8 @@ class Complaint extends Model {
     super.init({
       complaint_text: DataTypes.TEXT,
       complaint_picture: DataTypes.CHAR,
-      complaint_location: DataTypes.STRING,
+      complaint_latitude: DataTypes.STRING,
+      complaint_longitude: DataTypes.STRING,
     }, {
       sequelize
     })
