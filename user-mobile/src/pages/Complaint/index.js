@@ -1,9 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import {showMessage} from 'react-native-flash-message';
 import LocationContext from '../../provider/LocationProvider'
+import {Feather} from '@expo/vector-icons'
 
 export default function Complaint() {
   const navigation = useNavigation();
@@ -40,31 +41,28 @@ export default function Complaint() {
 
   return(
     <KeyboardAvoidingView style = {styles.background}>
-      <Text style= {styles.pageName}>Complaint Page</Text>
-      <TouchableOpacity onPress ={navigateToMap}>
-        <Text>Navegar para Mapa</Text>
-      </TouchableOpacity>
+        <Text style= {styles.pageName}>Complaint Page</Text>
+    
+      <View style={styles.mapViewButton}>
+        <View style ={styles.mapTextView}>
+          <Text style = {styles.mapTitle} >Localização</Text>
+          <Text style = {styles.mapSubtitle}>Latitude:</Text>
+          <Text style = {styles.mapInfo}> {latitudeC}</Text>
+          <Text style={styles.mapSubtitle}>Longitude:</Text>
+          <Text style = {styles.mapInfo}>{longitudeC}</Text>
+        </View>
+        <View style ={styles.mapButtonView}>
+          <TouchableOpacity onPress = {navigateToMap}>
+            <Feather name = 'map-pin' size={70}  color = '#004384'/>
+          </TouchableOpacity>
+        </View>
+      </View>
 
-      <TextInput
-        style = {styles.input}
-        placeholder = "Latitude"
-        autoCorrect = { false }
-        autoCapitalize = "none"
-        value = {latitudeC}
-        onChangeText = { setLatitudeC }
-        />
-
-        <TextInput
-        style = {styles.input}
-        placeholder = "Longitude"
-        autoCorrect = { false }
-        value = {longitudeC}
-        onChangeText = { setLongitudeC }
-        />
-        
-      <TouchableOpacity onPress = {RegisterComplaint}>
-        <Text>Cadastrar Reclamação</Text>
-      </TouchableOpacity>
+      <View style = {styles.btnView}>
+        <TouchableOpacity style = {styles.btnSubmit}onPress = {RegisterComplaint}>
+          <Text style ={styles.submitText}>Cadastrar Reclamação</Text>
+        </TouchableOpacity>
+      </View>
     </KeyboardAvoidingView>
     
   )
