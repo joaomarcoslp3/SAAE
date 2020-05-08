@@ -24,11 +24,11 @@ module.exports ={
       complaint_text,
       complaint_picture,
       complaint_latitude,
-       complaint_longitude,
+      complaint_longitude,
       user_id
     });
 
-    return res.json(complaint);
+    return res.json(`http://maps.google.com/maps?q=loc:${complaint_latitude},${complaint_longitude}`);
   },
 
   async findOne(req, res){
