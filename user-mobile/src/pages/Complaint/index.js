@@ -6,6 +6,7 @@ import {
    TouchableOpacity, 
    TextInput,
    Image, 
+   AsyncStorage,
    Animated} from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -14,6 +15,7 @@ import LocationContext from '../../provider/LocationProvider'
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
+import api from '../../services/api'
 
 
 export default function Complaint() {
@@ -54,22 +56,6 @@ export default function Complaint() {
     navigation.navigate('MapScreen')
   }
 
-  function RegisterComplaint(){
-    showMessage({
-      message: 'Sucesso!',
-      description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
-      type: 'success',
-      floating: 'true',
-      duration: 2000,
-      titleStyle: { fontWeight: 'bold', fontSize: 20},
-      textStyle: {fontSize: 15}
-    })
-    setLatitude('');
-    setLongitude('');
-    setText('');
-    setImage(null)
-  }
-
   async function handleChoosePhoto(){
     const status = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     console.log(status);
@@ -86,6 +72,23 @@ export default function Complaint() {
   }else{
     alert('É necessário permissão para termos acesso a galeria')
   }
+  }
+
+  async function handleTakePhoto(){
+    const status = await Permissions.askAsync(Permissions.CAMERA);
+    if(status.granted === true){
+      let result = await ImagePicker.launchCameraAsync({
+        allowsEditing: false,
+        quality: 1,
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+      });
+      if(!result.cancelled)
+      setImage(result.uri);
+
+      console.log(result);
+    }else{
+      alert('É necessário permissão para termos acessoa a câmera')
+    }
   }
 
   return(
@@ -118,7 +121,7 @@ export default function Complaint() {
             style ={{width: 100, height: 100}}
           />
         )}
-        <TouchableOpacity>
+        <TouchableOpacity onPress = {handleTakePhoto}>
           <Text>Tirar uma foto</Text>
         </TouchableOpacity>
       <View style={styles.mapViewButton}>
