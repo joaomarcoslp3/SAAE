@@ -56,6 +56,54 @@ export default function Complaint() {
     navigation.navigate('MapScreen')
   }
 
+  async function RegisterComplaint(){
+    // const user = await AsyncStorage.getItem('@SAAEapi:user')
+    // try{
+    //   api.post(`/users/${user.id}/complaint/`, {
+    //     complaint_text = text,
+    //     complaint_picture = image,
+    //     complaint_latitude = latitudeC,
+    //     complaint_longitude = longitudeC
+    //   })
+    //   showMessage({
+    //     message: 'Sucesso!',
+    //     description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
+    //     type: 'success',
+    //     floating: 'true',
+    //     duration: 2000,
+    //     titleStyle: { fontWeight: 'bold', fontSize: 20},
+    //     textStyle: {fontSize: 15}
+    //   })
+    //   setLatitude('');
+    //   setLongitude('');
+    //   setText('');
+    //   setImage(null)
+    // }catch{
+    //   showMessage({
+    //     message: 'ERRO!',
+    //     description: 'Ouve um problema no cadastro de sua reclamação, tente novamente mais tarde',
+    //     type: 'danger',
+    //     floating: 'true',
+    //     duration: 2000,
+    //     titleStyle: { fontWeight: 'bold', fontSize: 20},
+    //     textStyle: {fontSize: 15}
+    //   })
+    // };
+    showMessage({
+      message: 'Sucesso!',
+      description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
+      type: 'success',
+      floating: 'true',
+      duration: 2000,
+      titleStyle: { fontWeight: 'bold', fontSize: 20},
+      textStyle: {fontSize: 15}
+    })
+    setLatitude('');
+    setLongitude('');
+    setText('');
+    setImage(null)
+  }
+
   async function handleChoosePhoto(){
     const status = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     console.log(status);
