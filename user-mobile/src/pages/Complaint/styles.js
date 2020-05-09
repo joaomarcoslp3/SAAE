@@ -7,6 +7,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#22262e',
   },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 55,
+    width: '100%',
+    paddingBottom: 50
+  },
   pageName: {
     color: '#FFF',
     paddingBottom: 10
@@ -14,7 +22,11 @@ export default StyleSheet.create({
   mapViewButton: {
     flexDirection: 'row',
     width: '90%',
-    height: '20%',
+    // minHeight: '20%',
+    // maxHeight: '20%',
+    height: '35%',
+    maxHeight: '35%',
+    minHeight: '30%',
     backgroundColor: '#fff',
     alignItems: 'stretch',
     borderRadius: 7,
@@ -60,7 +72,7 @@ export default StyleSheet.create({
   },
   btnSubmit: {
     backgroundColor: '#004384',
-    width: '90%',
+    width: '95%',
     height: 45,
     alignItems: 'center',
     justifyContent: 'center',
@@ -69,5 +81,22 @@ export default StyleSheet.create({
   submitText: {
     color: '#FFF',
     fontSize: 16
+  },
+  input: {
+    backgroundColor: '#FFF',
+    width: '91%',
+    height: '8%',
+    minHeight: '10%',
+    maxHeight: '15%',
+    marginTop: 15,
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 17,
+    borderRadius: 7,
+    padding: 10
+  },
+  submitText: {
+    color: '#FFF',
+    fontSize: 18
   },
 });
