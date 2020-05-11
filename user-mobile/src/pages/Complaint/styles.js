@@ -55,9 +55,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     borderTopLeftRadius: 7,
     borderBottomColor: '#000',
+    borderBottomWidth: 1
   },
   photoButtonBottom: {
-    borderTopColor: '#000',
     marginTop: 0,
     backgroundColor: '#004384',
     width: '100%',

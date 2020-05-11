@@ -117,8 +117,6 @@ export default function Complaint() {
     });
     if(!result.cancelled)
     setImage(result.uri)
-
-    console.log(result);
   }else{
     alert('É necessário permissão para termos acesso a galeria')
   }
