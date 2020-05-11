@@ -7,6 +7,7 @@ import {
    TextInput,
    Image, 
    AsyncStorage,
+   Keyboard,
    Animated} from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -32,6 +33,7 @@ export default function Complaint() {
   const [opacity] = useState(new Animated.Value(0));
 
   useEffect(()=> {
+
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -132,15 +134,13 @@ export default function Complaint() {
       });
       if(!result.cancelled)
       setImage(result.uri);
-
-      console.log(result);
     }else{
       alert('É necessário permissão para termos acessoa a câmera')
     }
   }
 
   return(
-    <KeyboardAvoidingView keyboardVerticalOffset={550} style = {styles.background}>  
+    <KeyboardAvoidingView style = {styles.background}>  
       <Animated.View 
         style = {[
           styles.container,
@@ -160,18 +160,26 @@ export default function Complaint() {
         value = {text}
         onChangeText = { setText }
         />
-        <TouchableOpacity onPress ={handleChoosePhoto}>
-          <Text>Escolher uma foto</Text>
-        </TouchableOpacity>
-        {image && (
-          <Image 
-            source={{uri: image.uri}}
-            style ={{width: 100, height: 100}}
-          />
-        )}
-        <TouchableOpacity onPress = {handleTakePhoto}>
-          <Text>Tirar uma foto</Text>
-        </TouchableOpacity>
+        <View style ={styles.photoAreaButton}>
+          <View style = {styles.photoButtonsView}>
+            <TouchableOpacity style ={styles.photoButtonTop}onPress ={handleChoosePhoto}>
+              <Text style ={{color: '#FFF'}}>Escolher uma foto</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style ={styles.photoButtonBottom} onPress = {handleTakePhoto}>
+              <Text style ={{color: '#FFF'}}>Tirar uma foto</Text>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.photoImageView}>
+          {image ? (
+            <Image 
+            source={{uri: image}}
+            style ={{width: '100%', height: '100%'}}
+            />
+          ) : (
+            <Feather  name ="camera" size ={70} color='#004384'/>
+          )}
+        </View>
+        </View>
       <View style={styles.mapViewButton}>
         <View style ={styles.mapTextView}>
           <Text style = {styles.mapTitle} >Localização</Text>
