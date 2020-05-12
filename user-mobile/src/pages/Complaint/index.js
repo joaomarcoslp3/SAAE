@@ -7,7 +7,6 @@ import {
    TextInput,
    Image, 
    AsyncStorage,
-   Keyboard,
    Animated} from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -16,7 +15,8 @@ import LocationContext from '../../provider/LocationProvider'
 import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import api from '../../services/api'
+import api from '../../services/api';
+import * as Location from 'expo-location';
 
 
 export default function Complaint() {
@@ -24,15 +24,29 @@ export default function Complaint() {
   const navigation = useNavigation();
   //dados
   const [text, setText] = useState('');
-  const [latitudeC, setLatitudeC] = useState('');
+  const [latitudeC, setLagitudeC] = useState('');
   const [longitudeC, setLongitudeC] = useState('');
-  const { latitude,longitude, setLatitude, setLongitude } = useContext(LocationContext);
-  const [image, setImage] = useState(null) 
+  const { latitude, longitude, setLatitude, setLongitude } = useContext(LocationContext);
+  const [image, setImage] = useState(null);
+  const [adress, setAdress] = useState('');
+  const [adressNumber, setAdressNumber] = useState('')
   //animação
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
   const [opacity] = useState(new Animated.Value(0));
 
   useEffect(()=> {
+   setLagitudeC(JSON.stringify(latitude));
+   setLongitudeC(JSON.stringify(longitude));
+
+    const coords = {latitude, longitude}
+   
+    async function ReverseGeocode(){
+      if (latitude){
+        let result = await Location.reverseGeocodeAsync(coords);
+        setAdress(result[0].street)
+        setAdressNumber(result[0].name)
+      }
+    }
 
     Animated.parallel([
       Animated.spring(offset.y, {
@@ -46,12 +60,7 @@ export default function Complaint() {
       })
     ]).start();
 
-    setLatitudeC(JSON.stringify(latitude));
-    setLongitudeC(JSON.stringify(longitude));
-    if(latitude === ''){
-      setLatitudeC(null);
-      setLongitudeC(null)
-    }
+    ReverseGeocode()
   })
 
   function navigateToMap(){
@@ -79,7 +88,9 @@ export default function Complaint() {
     //   setLatitude('');
     //   setLongitude('');
     //   setText('');
-    //   setImage(null)
+    //   setImage(null);
+    //   setAdress('Clique ao lado para definir no mapa')
+    //   setAdressNumber('')
     // }catch{
     //   showMessage({
     //     message: 'ERRO!',
@@ -103,12 +114,13 @@ export default function Complaint() {
     setLatitude('');
     setLongitude('');
     setText('');
-    setImage(null)
+    setImage(null);
+    setAdress('');
+    setAdressNumber('')
   }
 
   async function handleChoosePhoto(){
     const status = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    console.log(status);
     if(status.granted === true){
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -181,10 +193,12 @@ export default function Complaint() {
       <View style={styles.mapViewButton}>
         <View style ={styles.mapTextView}>
           <Text style = {styles.mapTitle} >Localização</Text>
-          <Text style = {styles.mapSubtitle}>Latitude:</Text>
-          <Text style = {styles.mapInfo}> {latitudeC}</Text>
-          <Text style={styles.mapSubtitle}>Longitude:</Text>
-          <Text style = {styles.mapInfo}>{longitudeC}</Text>
+          {adress ?
+           <Text style = {styles.mapSubtitle}>{adress}, {adressNumber}</Text>
+          : 
+          <Text style = {styles.mapSubtitle}>Clique ao lado para definir no mapa</Text>  
+        }
+          
         </View>
         <View style ={styles.mapButtonView}>
           <TouchableOpacity onPress = {navigateToMap}>

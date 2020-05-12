@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 const LocationContext = React.createContext();
 
 export const LocationProvider = ({children}) => {
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
 
 
     return(

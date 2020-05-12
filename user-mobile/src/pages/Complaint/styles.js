@@ -80,7 +80,7 @@ export default StyleSheet.create({
   mapViewButton: {
     flexDirection: 'row',
     width: '90%',
-    height: 175,
+    height: 130,
     backgroundColor: '#22262e',
     alignItems: 'stretch',
     borderRadius: 7,
@@ -94,20 +94,16 @@ export default StyleSheet.create({
   },
   mapTitle: {
     paddingTop: 2,
-    paddingLeft: 20,
+    paddingLeft: 15,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 17,
     color: '#FFF'
   },
   mapSubtitle: {
     paddingTop: 5,
-    paddingLeft: 32,
+    paddingLeft: 20,
+    paddingRight: 10,
     fontSize: 16,
-    color: '#FFF'
-  },
-  mapInfo: {
-    fontSize: 14,
-    paddingLeft: 45,
     color: '#FFF'
   },
   mapButtonView: {
