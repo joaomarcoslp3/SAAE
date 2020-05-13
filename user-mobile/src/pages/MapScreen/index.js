@@ -77,17 +77,13 @@ export default function MapScreen() {
         >
           <Marker 
             coordinate = {currentRegion}
-          >
-            <Callout style = {styles.callout} onPress ={sendLocation}>
-              <View style = {styles.calloutView}>
-                <Text style= {styles.calloutText}>
-                  Adicionar essa localização em sua reclamação?
-                </Text>
-              </View>
-            </Callout>
-          </Marker>
+          />
+
         </MapView>
         <View style = {styles.ButtonView}>
+        <TouchableOpacity onPress ={sendLocation} style ={styles.confirmLocation}>
+            <MaterialIcons name ="check" size ={20} color = "#FFF"/>
+          </TouchableOpacity>
           <TouchableOpacity onPress ={centerMap} style ={styles.currentPositionButton}>
             <MaterialIcons name ="my-location" size ={20} color = "#FFF"/>
           </TouchableOpacity>
