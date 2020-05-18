@@ -7,6 +7,7 @@ class Complaint extends Model {
       complaint_picture: DataTypes.CHAR,
       complaint_latitude: DataTypes.STRING,
       complaint_longitude: DataTypes.STRING,
+      complaint_state: DataTypes.TINYINT,
     }, {
       sequelize
     })

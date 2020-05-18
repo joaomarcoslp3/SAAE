@@ -12,7 +12,7 @@ module.exports ={
   async store(req, res) {
     
     const { user_id } = req.params;
-    const { complaint_text, complaint_picture, complaint_latitude, complaint_longitude } = req.body;
+    const { complaint_text, complaint_picture, complaint_latitude, complaint_longitude, complaint_state } = req.body;
 
     const user = await User.findByPk(user_id);
 
@@ -25,10 +25,11 @@ module.exports ={
       complaint_picture,
       complaint_latitude,
       complaint_longitude,
+      complaint_state,
       user_id
     });
 
-    return res.json(`http://maps.google.com/maps?q=loc:${complaint_latitude},${complaint_longitude}`);
+    return res.json(complaint);
   },
 
   async findOne(req, res){
@@ -47,7 +48,7 @@ module.exports ={
       const complaint = await Complaints.destroy({where:{
           id: req.params.id
       }});
-      return res.json(complaint)
+      return res.status(200).json(complaint)
     }
  }
 
