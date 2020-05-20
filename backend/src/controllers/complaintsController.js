@@ -8,7 +8,13 @@ module.exports ={
 
     return res.json(complaint);
   },
-  
+  async findUnsolved(req, res){
+    const complaint = await Complaints.findAll({where: {
+      complaint_state: false
+    }})
+
+    return res.status(200).json(complaint)
+  },
   async store(req, res) {
     
     const { user_id } = req.params;

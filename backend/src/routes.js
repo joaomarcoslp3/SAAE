@@ -19,6 +19,7 @@ routes.post('/users/:user_id/complaint/', complaintController.store)
 routes.get('/complaint/findAll', complaintController.index);
 routes.get('/users/:user_id/complaint/findOne', complaintController.findOne);
 routes.delete('/users/:user_id/complaint/delete:id', complaintController.remove);
+routes.get('/complaint/findUnsolved', complaintController.findUnsolved);
 
 //rotas encarregados
 routes.get('/employees/find', employeesController.index);
