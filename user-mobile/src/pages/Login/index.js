@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../../provider/AuthProvider'
+import api from '../../services/api'
 
 import styles from './styles';
 
