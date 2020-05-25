@@ -67,5 +67,21 @@ export default StyleSheet.create({
     color: '#FFF',
     fontSize: 15,
     fontWeight: 'bold'
-  }
+  },
+  solvedView: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 10,
+    width: '100%',
+  },  
+  solvedBtn: {
+    flexDirection: 'row',
+    backgroundColor: '#228B22',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderRadius: 8,
+  },
 });

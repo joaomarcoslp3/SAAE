@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ope } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
+import {showMessage} from 'react-native-flash-message'
+
 
 import styles from './styles';
 
@@ -14,6 +16,19 @@ export default function ComplaintInfo(){
 
   function sendToMaps(){
     //to-do
+  }
+
+  function changeToSolved(){
+    showMessage({
+      message: 'Sucesso',
+      description: 'Essa reclamação está marcada como resolvida',
+      backgroundColor: '#228B22',
+      titleStyle: { fontWeight: 'bold', fontSize: 20},
+      textStyle: {fontSize: 15},
+      color: '#FFF',
+      floating: true,
+      duration: 2000
+    })
   }
 
   return(
@@ -42,6 +57,12 @@ export default function ComplaintInfo(){
               <Text style={styles.actionText}>Navegar para o Mapa</Text>
             </TouchableOpacity>
           </View>
+        </View>
+        <View style={styles.solvedView}>
+          <TouchableOpacity style={styles.solvedBtn} onPress ={changeToSolved}>
+            <Feather name="check-circle" size ={20} color='#FFF'/>
+            <Text style={styles.actionText}>   Marcar como resolvido</Text>
+          </TouchableOpacity>
         </View>
     </View>
   )
