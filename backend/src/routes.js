@@ -1,7 +1,8 @@
 const express = require('express');
 const userController = require('./controllers/usersController');
 const complaintController = require('./controllers/complaintsController');
-const employeesController = require('./controllers/employeesController')
+const employeesController = require('./controllers/employeesController');
+const webScapringController = require('./controllers/webScapringController');
 
 
 const routes = express.Router();
@@ -27,6 +28,8 @@ routes.post('/employees/create', employeesController.store);
 routes.delete('/employees/delete:codFunc', employeesController.remove);
 routes.post('/employees/login', employeesController.auth);
 
+//login SAAE
+routes.get('/SAAE/:idElet', webScapringController.scrape);
 
 
 module.exports = routes;
