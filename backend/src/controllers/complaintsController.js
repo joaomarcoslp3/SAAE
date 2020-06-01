@@ -55,6 +55,21 @@ module.exports ={
           id: req.params.id
       }});
       return res.status(200).json(complaint)
+    },
+    async setSolved(req, res){
+      const {id} = req.params;
+      const { complaint_state } = req.body;
+      Complaints.update(req.body, {
+        where: {
+          id
+        }
+      }).then(num => {
+        if(num == 1){
+          res.status(200).json({update: "succes"})
+        }else{
+          res.status(400).json({update: "fail"})
+        }
+      })
     }
  }
 
