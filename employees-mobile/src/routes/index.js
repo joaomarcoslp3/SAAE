@@ -16,6 +16,6 @@ export default function Routes(){
   }
 
   return signed ? <AppRoutes/> : <AuthRoutes/>
-  // return <AuthRoutes/>
+  // return <AppRoutes/>
   
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
-import {showMessage} from 'react-native-flash-message'
+import {showMessage} from 'react-native-flash-message';
+import { showLocation } from 'react-native-map-link'
 
 
 import styles from './styles';
@@ -15,7 +16,12 @@ export default function ComplaintInfo(){
   }
 
   function sendToMaps(){
-    //to-do
+    const latlong = {latitude: -20.456781242975893, longitude: -45.41749136522412}
+    showLocation({
+      ...latlong,
+      alwaysIncludeGoogle: true, 
+      appsWhiteList: ['google-maps'],
+    })
   }
 
   function changeToSolved(){
@@ -53,7 +59,7 @@ export default function ComplaintInfo(){
           <Text style = {styles.boxDescription}>Clique no botão abaixo e iremos te direcionar ao mapa com a localização dessa reclamação.</Text>
           
           <View style={styles.actions}>
-            <TouchableOpacity style = {styles.action} onPress ={()=>{}}>
+            <TouchableOpacity style = {styles.action} onPress ={sendToMaps}>
               <Text style={styles.actionText}>Navegar para o Mapa</Text>
             </TouchableOpacity>
           </View>
