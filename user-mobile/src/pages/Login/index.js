@@ -22,7 +22,6 @@ export default function Login() {
   const [errorMsg, setErrorMsg] = useState('');
   const auth = useContext(AuthContext);
 
-
   const navigation = useNavigation();
 
   function navigateToRegister(){
@@ -76,29 +75,22 @@ export default function Login() {
     ]).start();
   };
   async function _login (){
-    // try{
-    //   const res =  api.post('/users/login',  {
-    //     idElet: idElet,
-    //     password: password
-    //   });
-    //   const { user, token } = res.data;
-  
-    //   await AsyncStorage.multiSet([
-    //     ['@SAAEapi:token', token],
-    //     ['@SAAEapi:user', JSON.stringify(user)]
-    //   ]);
-    //    const token = await AsyncStorage.getItem('@SAAEapi:token');
-    //    auth.setToken(token);
-    //    auth.setSigned(true);
-    // }catch(err){
-    //   setErrorMsg('Id Eletrônico ou senha incorretos!')
-    // }
-    if(idElet == '1413' && password == 'abcd'){
-      await AsyncStorage.setItem('@SAAEapi:token', 'token');
-      const token = await AsyncStorage.getItem('@SAAEapi:token');
-      auth.setToken(token);
-      auth.setSigned(true);
-    }else{
+    try{
+      api.post('/users/login',  {
+        idElet: idElet,
+        password: password
+      }).then(res => {
+        const { user, token } = res.data;
+     
+        AsyncStorage.multiSet([
+          ['@SAAEapi:token', token],
+          ['@SAAEapi:user', JSON.stringify(user)]
+        ]);
+         
+         auth.setToken(token);
+         auth.setSigned(true);
+      })   
+    }catch(err){
       setErrorMsg('Id Eletrônico ou senha incorretos!')
     }
   }

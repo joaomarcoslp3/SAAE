@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { 
   KeyboardAvoidingView,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity, 
   Text, 
   Animated,
+  AsyncStorage,
   Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -22,7 +23,7 @@ export default function Register() {
   const [idElet, setIdElet] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-
+  const auth = useContext(AuthContext);
 
   const navigation = useNavigation();
 
@@ -52,32 +53,36 @@ export default function Register() {
   }, []);
 
   async function _register(){
-    // try{
-    //   const res =  api.post('/users/login',  {
-    //     name: name,
-    //     idElet: idElet,
-    //     password: password,
-    //     email: email
-    //   });
-    //   const { user, token } = res.data;
-  
-    //   await AsyncStorage.multiSet([
-    //     ['@SAAEapi:token', token],
-    //     ['@SAAEapi:user', JSON.stringify(user)]
-    //   ]);
-    //    const token = await AsyncStorage.getItem('@SAAEapi:token');
-    //    auth.setToken(token);
-    //    auth.setSigned(true);
-    // }catch(err){
-    //   showMessage({
-    //     message: 'Ops!',
-    //     description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
-    //     type: 'danger',
-    //     duration: 2000,
-    //     titleStyle: { fontWeight: 'bold', fontSize: 20},
-    //     textStyle: {fontSize: 15} 
-    //   })
-    // }
+    try{
+    if(name !== '' && idElet !== '' && password !==0){
+      api.post('/users/create',  {
+        name: name,
+        idElet: idElet,
+        password: password,
+        email: email
+      }).then(res => {
+        const { user, token } = res.data;
+        console.log(res.data);
+     
+        AsyncStorage.multiSet([
+          ['@SAAEapi:token', token],
+          ['@SAAEapi:user', JSON.stringify(user)]
+        ]);
+         
+         auth.setToken(token);
+         auth.setSigned(true);
+      }) 
+    }else{
+      showMessage({
+        message: 'Ops!',
+        description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
+        type: 'danger',
+        duration: 2000,
+        titleStyle: { fontWeight: 'bold', fontSize: 20},
+        textStyle: {fontSize: 15} 
+      })
+    }
+  }catch(err){
     showMessage({
       message: 'Ops!',
       description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
@@ -85,8 +90,9 @@ export default function Register() {
       duration: 2000,
       titleStyle: { fontWeight: 'bold', fontSize: 20},
       textStyle: {fontSize: 15} 
-    })
+  })
   }
+}
 
 
   return(
@@ -158,7 +164,7 @@ export default function Register() {
         keyboardType = 'email-address'
         />
 
-        <TouchableOpacity  style = {styles.btnSubmit} onClick = {_register}> 
+        <TouchableOpacity  style = {styles.btnSubmit} onPress = {_register}> 
           <Text  style = {styles.submitText}>Criar Conta</Text>
         </TouchableOpacity>
       </Animated.View>

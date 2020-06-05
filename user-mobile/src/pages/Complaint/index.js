@@ -17,6 +17,8 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import api from '../../services/api';
 import * as Location from 'expo-location';
+import AuthContext from '../../provider/AuthProvider'
+
 
 
 export default function Complaint() {
@@ -68,55 +70,56 @@ export default function Complaint() {
   }
 
   async function RegisterComplaint(){
-    // const user = await AsyncStorage.getItem('@SAAEapi:user')
-    // try{
-    //   api.post(`/users/${user.id}/complaint/`, {
-    //     complaint_text = text,
-    //     complaint_picture = image,
-    //     complaint_latitude = latitudeC,
-    //     complaint_longitude = longitudeC
-    //   })
-    //   showMessage({
-    //     message: 'Sucesso!',
-    //     description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
-    //     type: 'success',
-    //     floating: 'true',
-    //     duration: 2000,
-    //     titleStyle: { fontWeight: 'bold', fontSize: 20},
-    //     textStyle: {fontSize: 15}
-    //   })
-    //   setLatitude('');
-    //   setLongitude('');
-    //   setText('');
-    //   setImage(null);
-    //   setAdress('Clique ao lado para definir no mapa')
-    //   setAdressNumber('')
-    // }catch{
-    //   showMessage({
-    //     message: 'ERRO!',
-    //     description: 'Ouve um problema no cadastro de sua reclamação, tente novamente mais tarde',
-    //     type: 'danger',
-    //     floating: 'true',
-    //     duration: 2000,
-    //     titleStyle: { fontWeight: 'bold', fontSize: 20},
-    //     textStyle: {fontSize: 15}
-    //   })
-    // };
-    showMessage({
-      message: 'Sucesso!',
-      description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
-      type: 'success',
-      floating: 'true',
-      duration: 2000,
-      titleStyle: { fontWeight: 'bold', fontSize: 20},
-      textStyle: {fontSize: 15}
-    })
-    setLatitude('');
-    setLongitude('');
-    setText('');
-    setImage(null);
-    setAdress('');
-    setAdressNumber('')
+    const user = await AsyncStorage.getItem('@SAAEapi:user');
+    const jsonUser = JSON.parse(user);
+    if(text !== '' && latitudeC!==0){
+      api.post(`/users/${jsonUser.id}/complaint/`, {
+        complaint_text: text,
+        complaint_picture: image,
+        complaint_latitude: latitudeC,
+        complaint_longitude: longitudeC
+      })
+      showMessage({
+        message: 'Sucesso!',
+        description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
+        type: 'success',
+        floating: 'true',
+        duration: 2000,
+        titleStyle: { fontWeight: 'bold', fontSize: 20},
+        textStyle: {fontSize: 15}
+      })
+      setLatitude('');
+      setLongitude('');
+      setText('');
+      setImage(null);
+      setAdress('Clique ao lado para definir no mapa')
+      setAdressNumber('')
+    }else{
+      showMessage({
+        message: 'ERRO!',
+        description: 'Ouve um problema no cadastro de sua reclamação, tente novamente mais tarde',
+        type: 'danger',
+        floating: 'true',
+        duration: 2000,
+        titleStyle: { fontWeight: 'bold', fontSize: 20},
+        textStyle: {fontSize: 15}
+      })
+    };
+    // showMessage({
+    //   message: 'Sucesso!',
+    //   description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
+    //   type: 'success',
+    //   floating: 'true',
+    //   duration: 2000,
+    //   titleStyle: { fontWeight: 'bold', fontSize: 20},
+    //   textStyle: {fontSize: 15}
+    // })
+    // setLatitude('');
+    // setLongitude('');
+    // setText('');
+    // setImage(null);
+    // setAdress('');
+    // setAdressNumber('')
   }
 
   async function handleChoosePhoto(){
