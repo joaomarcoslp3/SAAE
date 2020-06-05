@@ -53,14 +53,23 @@ export default function Register() {
   }, []);
 
   async function _register(){
-    try{
-    if(name !== '' && idElet !== '' && password !==0){
       api.post('/users/create',  {
         name: name,
         idElet: idElet,
         password: password,
         email: email
       }).then(res => {
+        console.log(res.data);
+        if(res.status===400){
+          showMessage({
+            message: 'Ops!',
+            description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
+            type: 'danger',
+            duration: 2000,
+            titleStyle: { fontWeight: 'bold', fontSize: 20},
+            textStyle: {fontSize: 15} 
+          })
+        }else{
         const { user, token } = res.data;
         console.log(res.data);
      
@@ -71,28 +80,19 @@ export default function Register() {
          
          auth.setToken(token);
          auth.setSigned(true);
-      }) 
-    }else{
-      showMessage({
-        message: 'Ops!',
-        description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
-        type: 'danger',
-        duration: 2000,
-        titleStyle: { fontWeight: 'bold', fontSize: 20},
-        textStyle: {fontSize: 15} 
+        }
+      }).catch((error) => {
+        showMessage({
+          message: 'Ops!',
+          description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
+          type: 'danger',
+          duration: 2000,
+          titleStyle: { fontWeight: 'bold', fontSize: 20},
+          textStyle: {fontSize: 15} 
       })
-    }
-  }catch(err){
-    showMessage({
-      message: 'Ops!',
-      description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
-      type: 'danger',
-      duration: 2000,
-      titleStyle: { fontWeight: 'bold', fontSize: 20},
-      textStyle: {fontSize: 15} 
-  })
+    })
   }
-}
+
 
 
   return(
