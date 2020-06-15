@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#22262e',
+    backgroundColor: '#F0F0F0',
   },
   container: {
     flex: 1,
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     height: 50,
     marginTop: 15,
     marginBottom: 15,
-    color: '#222',
+    color: '#6C6C80',
     fontSize: 17,
     borderRadius: 7,
     padding: 10
@@ -130,7 +130,7 @@ export default StyleSheet.create({
     borderRadius: 7
   },
   submitText: {
-    color: '#FFF',
+    color: '#000',
     fontSize: 18
   },
 });

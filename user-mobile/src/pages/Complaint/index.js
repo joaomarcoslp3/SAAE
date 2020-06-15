@@ -169,6 +169,7 @@ export default function Complaint() {
         <TextInput
         style = {styles.input}
         placeholder = "Insira aqui o motivo de sua reclamação"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { true }
         value = {text}
         onChangeText = { setText }
@@ -212,7 +213,7 @@ export default function Complaint() {
         
       <View style = {styles.btnView}>
         <TouchableOpacity style = {styles.btnSubmit}onPress = {RegisterComplaint}>
-          <Text style ={styles.submitText}>Cadastrar Reclamação</Text>
+          <Text style ={{color: '#FFF', fontSize: 16}}>Cadastrar Reclamação</Text>
         </TouchableOpacity>
       </View>
       </Animated.View>

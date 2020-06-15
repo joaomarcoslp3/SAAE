@@ -123,6 +123,7 @@ export default function Register() {
         <TextInput
         style = {styles.input}
         placeholder = "Nome"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { true}
         value = {name}
         onChangeText = { setName }
@@ -136,6 +137,7 @@ export default function Register() {
         <TextInput
         style = {styles.input}
         placeholder = "Id Eletrônico"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         autoCapitalize = "none"
         value = {idElet}
@@ -146,6 +148,7 @@ export default function Register() {
         <TextInput
         style = {styles.input}
         placeholder = "Senha"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         value = {password}
         onChangeText = { setPassword }
@@ -158,6 +161,7 @@ export default function Register() {
         <TextInput
         style = {styles.input}
         placeholder = "E-mail"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         value = {email}
         onChangeText = { setEmail }
@@ -165,7 +169,7 @@ export default function Register() {
         />
 
         <TouchableOpacity  style = {styles.btnSubmit} onPress = {_register}> 
-          <Text  style = {styles.submitText}>Criar Conta</Text>
+          <Text  style = {styles.registerText}>Criar Conta</Text>
         </TouchableOpacity>
       </Animated.View>
     </KeyboardAvoidingView>

@@ -5,7 +5,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#22262e',
+    backgroundColor: '#F0F0F0',
   },
   containerLogo: {
     flex: 1,
@@ -20,9 +20,9 @@ export default StyleSheet.create({
   },
   input: {
     backgroundColor: '#FFF',
+    color: '#6C6C80',
     width: '90%',
     marginBottom: 15,
-    color: '#222',
     fontSize: 17,
     borderRadius: 7,
     padding: 10
@@ -43,10 +43,10 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   registerText: { 
-    color: '#FFF'
+    color: '#000'
   },
   errorMsg:{
-    color: '#FFF',
+    color: '#000',
     fontSize: 18,
     paddingBottom: 15
   }

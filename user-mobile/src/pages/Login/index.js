@@ -75,11 +75,15 @@ export default function Login() {
     ]).start();
   };
   async function _login (){
+
     try{
       api.post('/users/login',  {
         idElet: idElet,
         password: password
       }).then(res => {
+        if(res.status ===400){
+          setErrorMsg('Id Eletrônico ou senha incorretos!')
+        }else{
         const { user, token } = res.data;
      
         AsyncStorage.multiSet([
@@ -89,8 +93,8 @@ export default function Login() {
          
          auth.setToken(token);
          auth.setSigned(true);
-      })   
-    }catch(err){
+        }})
+      }catch(e){
       setErrorMsg('Id Eletrônico ou senha incorretos!')
     }
   }
@@ -123,6 +127,7 @@ export default function Login() {
         <TextInput
         style = {styles.input}
         placeholder = "Id Eletrônico"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         autoCapitalize = "none"
         value = {idElet}
@@ -132,6 +137,7 @@ export default function Login() {
         <TextInput
         style = {styles.input}
         placeholder = "Senha"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         value = {password}
         onChangeText = { setPassword }

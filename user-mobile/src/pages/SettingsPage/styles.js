@@ -5,10 +5,10 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#22262e',
+    backgroundColor: '#F0F0F0',
   },
   text:{
-    color: '#FFF',
+    color: '#000',
   },
   btnLogout: {
     backgroundColor: '#ff0000',

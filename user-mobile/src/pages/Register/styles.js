@@ -5,7 +5,7 @@ export default StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#22262e',
+    backgroundColor: '#F0F0F0',
     paddingTop: Constants.statusBarHeight + 15,
   },
   header: {
@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   headerText: {
     fontSize: 20,
-    color: '#FFF',
+    color: '#000',
     alignItems: 'center'
   },
   headerBtn: {
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     width: '90%',
     marginTop: 15,
     marginBottom: 15,
-    color: '#222',
+    color: '#6C6C80',
     fontSize: 17,
     borderRadius: 7,
     padding: 10
@@ -53,18 +53,19 @@ export default StyleSheet.create({
     marginTop: 20
   },
   submitText: {
-    color: '#FFF',
+    color: '#000',
     fontSize: 18
   },
   btnRegister: {
     marginTop: 10,
   },
   registerText: { 
-    color: '#FFF'
+    color: '#FFF',
+    fontSize: 18
   },
   submitInfo: {
     fontSize: 15,
-    color: '#a7a7c9'
+    color: '#808080'
   },
   subWithInfo: {
     flexDirection: 'row',
