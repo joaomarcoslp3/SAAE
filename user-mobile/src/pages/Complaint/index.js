@@ -105,21 +105,6 @@ export default function Complaint() {
         textStyle: {fontSize: 15}
       })
     };
-    // showMessage({
-    //   message: 'Sucesso!',
-    //   description: 'Sua reclamação foi realizada com sucesso e já se encontra com nossos funcionários para solucioná-la.',
-    //   type: 'success',
-    //   floating: 'true',
-    //   duration: 2000,
-    //   titleStyle: { fontWeight: 'bold', fontSize: 20},
-    //   textStyle: {fontSize: 15}
-    // })
-    // setLatitude('');
-    // setLongitude('');
-    // setText('');
-    // setImage(null);
-    // setAdress('');
-    // setAdressNumber('')
   }
 
   async function handleChoosePhoto(){
@@ -153,7 +138,10 @@ export default function Complaint() {
   }
 
   return(
-    <KeyboardAvoidingView style = {styles.background}>  
+    <LinearGradient
+        colors={['#F0F0F0', '#ededed']}
+        style={styles.background}
+    >  
       <Animated.View 
         style = {[
           styles.container,
@@ -218,7 +206,7 @@ export default function Complaint() {
       </View>
       </Animated.View>
 
-    </KeyboardAvoidingView>
+    </LinearGradient>
     
   )
 }

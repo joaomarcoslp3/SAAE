@@ -11,7 +11,8 @@ import {
   AsyncStorage
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AuthContext from '../../provider/AuthProvider'
+import AuthContext from '../../provider/AuthProvider';
+import {LinearGradient} from 'expo-linear-gradient'
 import api from '../../services/api'
 
 import styles from './styles';
@@ -101,7 +102,11 @@ export default function Login() {
 
 
   return(
-    <KeyboardAvoidingView style = {styles.background}>
+    
+    <LinearGradient
+        colors={['#F0F0F0', '#ededed']}
+        style={styles.background}
+    >
       <View style = {styles.containerLogo}>
         <Animated.Image
           style = {{
@@ -153,6 +158,7 @@ export default function Login() {
         </TouchableOpacity>
 
       </Animated.View>
-    </KeyboardAvoidingView>
+      </LinearGradient>
+    
   )
 }

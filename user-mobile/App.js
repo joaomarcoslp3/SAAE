@@ -13,7 +13,7 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         <LocationProvider>
-          <StatusBar barStyle = {"light-content"} backgroundColor= {'#F0F0F0'}/>
+          <StatusBar barStyle = {"dark-content"} backgroundColor= {'#F0F0F0'}/>
           <Routes/>
           <FlashMessage position="top"/> 
         </LocationProvider>

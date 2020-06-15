@@ -1,5 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient'
 import AuthContext from '../../provider/AuthProvider';
 import styles from './styles';
 
@@ -14,7 +15,10 @@ export default function SettingsPage() {
   }
   
   return (
-   <View style = {styles.background}>
+    <LinearGradient
+    colors={['#F0F0F0', '#ededed']}
+    style={styles.background}
+>
      <Text style = {styles.text}>Settings Page</Text>
       <TouchableOpacity onPress = {_logout} style={styles.btnLogout}>
         <View style = {styles.insideBtn}>
@@ -22,6 +26,6 @@ export default function SettingsPage() {
             <Text style ={styles.submitText}>Logout</Text>
           </View>
         </TouchableOpacity>
-   </View>
+   </LinearGradient>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../../provider/AuthProvider';
+import {LinearGradient} from 'expo-linear-gradient'
 import {showMessage} from 'react-native-flash-message'
 
 
@@ -96,8 +97,10 @@ export default function Register() {
 
 
   return(
-    <KeyboardAvoidingView style = {styles.background}>
-      
+    <LinearGradient
+        colors={['#F0F0F0', '#ededed']}
+        style={styles.background}
+    >  
       <View style = {styles.header}>
         <View style = {styles.headerBtn}>
         <TouchableOpacity onPress = { navigateToLogin}>
@@ -172,7 +175,7 @@ export default function Register() {
           <Text  style = {styles.registerText}>Criar Conta</Text>
         </TouchableOpacity>
       </Animated.View>
-    </KeyboardAvoidingView>
+    </LinearGradient>
 
   )
 }
