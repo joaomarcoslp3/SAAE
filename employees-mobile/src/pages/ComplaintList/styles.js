@@ -22,13 +22,13 @@ export default StyleSheet.create({
     fontSize: 25,
     marginBottom: 16,
     marginTop: 35,
-    color: '#B2BABB',
+    color: '#004384',
     fontWeight: 'bold'
   },
   description: {
     fontSize: 15,
     lineHeight: 24,
-    color: '#D0D3D4'
+    color: '#000'
   },
   complaintList: {
     marginTop: 32,

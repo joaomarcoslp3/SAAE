@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import { Animated, View, FlatList, Text, TouchableOpacity, AsyncStorage, Image } from 'react-native';
 import AuthContext from '../../provider/AuthProvider';
 import { Feather } from '@expo/vector-icons';
+import {LinearGradient} from 'expo-linear-gradient'
 import {useNavigation} from '@react-navigation/native'
 
 import styles from './styles';
@@ -37,16 +38,19 @@ export default function ComplaintList(){
   }
 
   return(
-    <View style ={styles.container}>
+    <LinearGradient
+    colors={['#F0F0F0', '#ededed']}
+    style={styles.container}
+  >
       <View style={styles.header}>
         <Image source = {require('../../assets/logo.png')} style={styles.headerImg}/>
         <TouchableOpacity style={styles.logoutBtn} onPress={_logout}>
-          <Feather name = "power" size ={24} color = '#35AAFF'/>
+          <Feather name = "power" size ={24} color = '#004384'/>
         </TouchableOpacity>
       </View>
 
       <Text style={styles.title}>Bem-Vindo!</Text>
-      <Text style={styles.description}>Escolha a baixo um dos problemas em nossas instalações e melhore a experiência dos nossos clientes.</Text>
+      <Text style={styles.description}>Escolha abaixo um dos problemas em nossas instalações e melhore a experiência dos nossos clientes.</Text>
 
       <Animated.FlatList
         data={[1,2,3,4]}
@@ -73,6 +77,6 @@ export default function ComplaintList(){
         </View> 
         )}
       />      
-    </View>
+    </LinearGradient>
   )
 }

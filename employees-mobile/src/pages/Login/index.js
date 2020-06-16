@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import AuthContext from '../../provider/AuthProvider';
 import {showMessage} from 'react-native-flash-message'
+import {LinearGradient} from 'expo-linear-gradient'
 import api from '../../services/api'
 
 import styles from './styles';
@@ -81,36 +82,34 @@ export default function Login() {
     ]).start();
   };
   async function _login (){
-    // try{
-    //   const res =  api.post('/employees/login',  {
-    //     codFunc: codFunc,
-    //     password: password
-    //   });
-    //   const { user, token } = res.data;
-  
-    //   await AsyncStorage.multiSet([
-    //     ['@SAAEapi:token', token],
-    //     ['@SAAEapi:user', JSON.stringify(user)]
-    //   ]);
-    //    const token = await AsyncStorage.getItem('@SAAEapi:token');
-    //    auth.setToken(token);
-    //    auth.setSigned(true);
-    // }catch(err){
-    //   setErrorMsg('Id Eletrônico ou senha incorretos!')
-    // }
-    if(codFunc == '78541' && password == 'abcd'){
-      await AsyncStorage.setItem('@SAAEapi:token', 'token');
-      const token = await AsyncStorage.getItem('@SAAEapi:token');
-      auth.setToken(token);
-      auth.setSigned(true);
-    }else{
-      setErrorMsg('Código de Funcionário ou senha incorretos!')
+    try{
+      api.post('/employees/login',  {
+        codFunc: codFunc,
+        password: password
+      }).then(res => {
+        if(res.status ===400){
+          setErrorMsg('Id Eletrônico ou senha incorretos!')
+        }else{
+        const { employees, token } = res.data;
+        AsyncStorage.multiSet([
+          ['@SAAEapi:token', token],
+          ['@SAAEapi:user', JSON.stringify(employees)]
+        ]);
+         
+         auth.setToken(token);
+         auth.setSigned(true);
+        }})
+      }catch(e){
+      setErrorMsg('Id do Funcionário ou senha incorretos!')
     }
   }
 
 
   return(
-    <KeyboardAvoidingView style = {styles.background}>
+    <LinearGradient
+        colors={['#F0F0F0', '#ededed']}
+        style={styles.background}
+    >
       <View style = {styles.containerLogo}>
         <Animated.Image
           style = {{
@@ -136,6 +135,7 @@ export default function Login() {
         <TextInput
         style = {styles.input}
         placeholder = "Código de Funcionário"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         autoCapitalize = "none"
         keyboardType="numeric"
@@ -146,6 +146,7 @@ export default function Login() {
         <TextInput
         style = {styles.input}
         placeholder = "Senha"
+        placeholderTextColor = '#A0A0B2'
         autoCorrect = { false }
         value = {password}
         onChangeText = { setPassword }
@@ -161,6 +162,6 @@ export default function Login() {
         </TouchableOpacity>
 
       </Animated.View>
-    </KeyboardAvoidingView>
+    </LinearGradient>
   )
 }

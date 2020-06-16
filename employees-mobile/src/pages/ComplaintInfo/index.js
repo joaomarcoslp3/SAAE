@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import {showMessage} from 'react-native-flash-message';
 import { showLocation } from 'react-native-map-link'
+import {LinearGradient} from 'expo-linear-gradient'
 
 
 import styles from './styles';
@@ -38,7 +39,10 @@ export default function ComplaintInfo(){
   }
 
   return(
-    <View style ={styles.container}>
+    <LinearGradient
+    colors={['#F0F0F0', '#ededed']}
+    style={styles.container}
+    >
       <View style={styles.header}>
         <Image source = {require('../../assets/logo.png')} style={styles.headerImg}/>
         <TouchableOpacity style={styles.logoutBtn} onPress={navigateBack}>
@@ -70,6 +74,6 @@ export default function ComplaintInfo(){
             <Text style={styles.actionText}>   Marcar como resolvido</Text>
           </TouchableOpacity>
         </View>
-    </View>
+    </LinearGradient>
   )
 }
