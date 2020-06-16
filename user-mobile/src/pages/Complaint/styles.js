@@ -23,7 +23,7 @@ export default StyleSheet.create({
     height: 50,
     marginTop: 15,
     marginBottom: 15,
-    color: '#6C6C80',
+    color: '#373740',
     fontSize: 17,
     borderRadius: 7,
     padding: 10
@@ -54,7 +54,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderTopLeftRadius: 7,
-    borderBottomColor: '#000',
+    borderBottomColor: '#b4c4d4',
     borderBottomWidth: 1
   },
   photoButtonBottom: {
@@ -90,7 +90,7 @@ export default StyleSheet.create({
     borderBottomLeftRadius: 7,
     width: '65%',
     justifyContent: 'center',
-    backgroundColor: '#2e3542'
+    backgroundColor: '#004384'
   },
   mapTitle: {
     paddingTop: 2,
@@ -123,7 +123,7 @@ export default StyleSheet.create({
   //Submit Button
   btnSubmit: {
     backgroundColor: '#004384',
-    width: '95%',
+    width: '100%',
     height: 45,
     alignItems: 'center',
     justifyContent: 'center',

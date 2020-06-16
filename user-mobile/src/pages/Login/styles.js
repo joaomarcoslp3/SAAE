@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   input: {
     backgroundColor: '#FFF',
-    color: '#6C6C80',
+    color: '#373740',
     width: '90%',
     marginBottom: 15,
     fontSize: 17,

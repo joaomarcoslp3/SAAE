@@ -38,7 +38,7 @@ export default StyleSheet.create({
     width: '90%',
     marginTop: 15,
     marginBottom: 15,
-    color: '#6C6C80',
+    color: '#373740',
     fontSize: 17,
     borderRadius: 7,
     padding: 10
