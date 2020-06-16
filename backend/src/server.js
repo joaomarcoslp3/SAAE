@@ -5,9 +5,11 @@ require('./database');
 
 const app = express();
 
-console.log('[Express] Creating a new server on port [3000]');
+const port = 8080
+
+console.log(`[Express] Creating a new server on [${port}]`);
 
 app.use(express.json());
 app.use(routes);
 
-app.listen(3000);
+app.listen(port);
