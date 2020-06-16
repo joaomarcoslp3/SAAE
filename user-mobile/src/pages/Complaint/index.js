@@ -17,6 +17,7 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import api from '../../services/api';
 import * as Location from 'expo-location';
+import {LinearGradient} from 'expo-linear-gradient'
 import AuthContext from '../../provider/AuthProvider'
 
 

@@ -91,7 +91,6 @@ export default function Login() {
           ['@SAAEapi:token', token],
           ['@SAAEapi:user', JSON.stringify(user)]
         ]);
-         
          auth.setToken(token);
          auth.setSigned(true);
         }})
@@ -101,8 +100,7 @@ export default function Login() {
   }
 
 
-  return(
-    
+  return(  
     <LinearGradient
         colors={['#F0F0F0', '#ededed']}
         style={styles.background}

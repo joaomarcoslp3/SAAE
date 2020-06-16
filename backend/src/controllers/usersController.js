@@ -28,12 +28,16 @@ module.exports = {
       email: req.body.email,
     };
 
+    const idElet = req.body.idElet;
+
       const user = Users.findOne({
         where: {
           idElet: req.body.idElet
         }
         }).then(user => {
-          if(!user){
+         if(idElet === ''){
+          res.status(400).json({ error: 'idElet cannot be null' })
+        }else if(!user){
             const hash = bcrypt.hashSync(userData.password, 10);
             userData.password = hash;
             Users.create(userData)
