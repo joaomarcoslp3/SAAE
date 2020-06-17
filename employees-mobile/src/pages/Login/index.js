@@ -20,7 +20,7 @@ import styles from './styles';
 export default function Login() {
   const [codFunc, setCodFunc] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState(null);
   const auth = useContext(AuthContext);
 
   function _register(){
@@ -82,14 +82,10 @@ export default function Login() {
     ]).start();
   };
   async function _login (){
-    try{
       api.post('/employees/login',  {
         codFunc: codFunc,
         password: password
       }).then(res => {
-        if(res.status ===400){
-          setErrorMsg('Id Eletrônico ou senha incorretos!')
-        }else{
         const { employees, token } = res.data;
         AsyncStorage.multiSet([
           ['@SAAEapi:token', token],
@@ -97,11 +93,9 @@ export default function Login() {
         ]);
          
          auth.setToken(token);
-         auth.setSigned(true);
-        }})
-      }catch(e){
-      setErrorMsg('Id do Funcionário ou senha incorretos!')
-    }
+        }).catch(err => {
+          setErrorMsg('Código de Funcionário ou senha incorretos!')
+        }) 
   }
 
 
@@ -132,6 +126,7 @@ export default function Login() {
         ]}
       >
         <Text style ={styles.errorMsg}>{errorMsg}</Text>
+
         <TextInput
         style = {styles.input}
         placeholder = "Código de Funcionário"
