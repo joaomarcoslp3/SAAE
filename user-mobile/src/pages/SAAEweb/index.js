@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { ActivityIndicator, AsyncStorage } from 'react-native';
+import { ActivityIndicator, AsyncStorage, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 export default function SAAEweb() {
@@ -14,7 +14,7 @@ export default function SAAEweb() {
     async function getUserId(){
       const user = await AsyncStorage.getItem('@SAAEapi:user');
       const jsonUser = JSON.parse(user);
-      setUserId(jsonUser.idElet)  
+      setUserId(jsonUser.idElet) 
     }
     getUserId()
     const jsCode = `document.getElementById('txtcod').value='${userId}'
@@ -25,14 +25,26 @@ export default function SAAEweb() {
 
 
   return (
-    <WebView
+    <>
+      {loading ? (
+      <View style ={{flex: 1, justifyContent: 'flex-end', alignItems: 'center', backgroundColor: '#FFF'}}>
+        <ActivityIndicator size='large' color="#004384"/>
+      </View>
+      )
+        :
+        <></>  
+    }
+
+      <WebView
       ref={wvRef}
-      startInLoadingState = { true }
+      style = {loading ? {flex:0} : {flex:1}}
       renderLoading = { renderLoading } 
       scalesPageToFit= {false}
       javaScriptEnabled={true}
       onNavigationStateChange={navState => {
-        if(navState.url==='http://autoatendimento.prosanearinfo.com.br/v5.0/principal.php'){
+        if(navState.url !== 'http://autoatendimento.prosanearinfo.com.br/v5.0/debitos.php'){
+          setLoading(false);
+        }else if(navState.url==='http://autoatendimento.prosanearinfo.com.br/v5.0/principal.php'){
           setScript(`
             document.querySelectorAll("li[class=debitos]")[0].click()
           `)
@@ -42,9 +54,11 @@ export default function SAAEweb() {
           `
           setScript(jsCode)
         }
+
       }}
       injectedJavaScript={script}
       source={{uri: 'http://autoatendimento.prosanearinfo.com.br/v5.0/index.php?id=A3AQ33E'}}
   />
+  </>
   );
 }

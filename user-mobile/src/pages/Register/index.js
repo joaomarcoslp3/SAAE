@@ -104,7 +104,7 @@ export default function Register() {
       <View style = {styles.header}>
         <View style = {styles.headerBtn}>
         <TouchableOpacity onPress = { navigateToLogin}>
-          <Feather name = "arrow-left" size ={24} color = '#35AAFF'/>
+          <Feather name = "arrow-left" size ={24} color = '#004384'/>
         </TouchableOpacity>
         </View>
         <View style = {styles.viewHT}>
