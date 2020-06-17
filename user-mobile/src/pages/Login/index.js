@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { 
-  KeyboardAvoidingView,
   View, 
   Image, 
   TextInput, 
@@ -20,7 +19,7 @@ import styles from './styles';
 export default function Login() {
   const [idElet, setIdElet] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState(null);
   const auth = useContext(AuthContext);
 
   const navigation = useNavigation();
@@ -76,29 +75,21 @@ export default function Login() {
     ]).start();
   };
   async function _login (){
-
-    try{
-      api.post('/users/login',  {
+     api.post('/users/login',  {
         idElet: idElet,
         password: password
       }).then(res => {
-        if(res.status ===400){
-          setErrorMsg('Id Eletrônico ou senha incorretos!')
-        }else{
         const { user, token } = res.data;
-     
+
         AsyncStorage.multiSet([
           ['@SAAEapi:token', token],
           ['@SAAEapi:user', JSON.stringify(user)]
         ]);
          auth.setToken(token);
-         auth.setSigned(true);
-        }})
-      }catch(e){
-      setErrorMsg('Id Eletrônico ou senha incorretos!')
-    }
+      }).catch(err => {
+        setErrorMsg('Id Eletrônico ou senha incorretos!')
+      })
   }
-
 
   return(  
     <LinearGradient
