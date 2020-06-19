@@ -22,7 +22,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.joaomarcoslp3.saaeusers"
+    },
+    "android": {
+      "package": "com.joaomarcoslp3.saaeusers"
+    },
+    "sdkVersion": "36.0.0",
+    "description": "",
+    "githubUrl": "https://github.com/joaomarcoslp3/SAAE/tree/master/user-mobile"
   }
 }
