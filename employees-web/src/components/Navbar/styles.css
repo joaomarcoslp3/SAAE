@@ -1,0 +1,30 @@
+.navBackground {
+  background-color: #004384;
+  min-height: 55px;
+}
+
+.navName {
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  transition: font-size 0.2s;
+  padding-right: 10px;
+}
+
+.navName:hover {
+  color: white;
+  opacity: 0.8;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.navBarToogleColor {
+  background-color: #35AAFF !important;
+  height: 15px;
+  width: 40px;
+}
+
+img {
+  height: 45px;
+}

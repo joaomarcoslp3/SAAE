@@ -15,7 +15,8 @@ export const login = employees =>{
     codFunc: employees.codFunc,
     password: employees.password
   }).then(res =>{
-    localStorage.setItem('emptoken', res.data);
+    localStorage.setItem('emptoken', res.data.token);
+    localStorage.setItem('user', JSON.stringify(res.data.employees));
     return res.data
   }).catch(err =>{
     console.log(err);
