@@ -12,6 +12,7 @@ import api from '../../services/api';
 export default function ComplaintList(){
   const navigation = useNavigation();
   const [complaints, setComplaints] = useState([]);
+  const [name, setName] = useState(null);
   const auth = useContext(AuthContext);
 
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
@@ -21,9 +22,13 @@ export default function ComplaintList(){
     const res = await api.get('/complaint/findUnsolved');
     setComplaints(res.data)
   }
+  async function getEmployeerName(){
+    const employeer = await AsyncStorage.getItem('@SAAEapi:user');
+    const jsonEmployeer = JSON.parse(employeer);
+    setName(jsonEmployeer.name);
+  }
 
   useEffect(()=> {
-   loadComplaints()
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -35,7 +40,11 @@ export default function ComplaintList(){
         duration: 200,
       })
     ]).start();
+    getEmployeerName();
+  }, [])
 
+  useEffect(()=> {
+   loadComplaints()
   }, [complaints])
 
   function navigateToInfo(complaint){
@@ -58,7 +67,7 @@ export default function ComplaintList(){
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.title}>Bem-Vindo!</Text>
+      <Text style={styles.title}>Bem-Vindo, {name}!</Text>
       <Text style={styles.description}>Escolha abaixo um dos problemas em nossas instalações e melhore a experiência dos nossos clientes.</Text>
 
       <Animated.FlatList

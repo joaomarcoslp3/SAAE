@@ -134,7 +134,7 @@ export default function Register() {
        <View style = { styles.subWithInfo}> 
         <Text style = {styles.submitText}>Insira seu Id Eletrônico </Text>
         <TouchableOpacity onPress = { navigateToRegisterInfo }>
-          <Feather name = "info" size = {18} color= "#35AAFF" />
+          <Feather name = "info" size = {18} color= "#004384" />
         </TouchableOpacity>
       </View> 
         <TextInput
