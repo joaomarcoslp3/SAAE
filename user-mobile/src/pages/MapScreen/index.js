@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { View, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
-import MapView, { Marker, Callout,  } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync,  } from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import LocationContext from '../../provider/LocationProvider';

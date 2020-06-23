@@ -60,19 +60,7 @@ export default function Register() {
         password: password,
         email: email
       }).then(res => {
-        console.log(res.data);
-        if(res.status===400){
-          showMessage({
-            message: 'Ops!',
-            description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
-            type: 'danger',
-            duration: 2000,
-            titleStyle: { fontWeight: 'bold', fontSize: 20},
-            textStyle: {fontSize: 15} 
-          })
-        }else{
         const { user, token } = res.data;
-        console.log(res.data);
      
         AsyncStorage.multiSet([
           ['@SAAEapi:token', token],
@@ -81,8 +69,7 @@ export default function Register() {
          
          auth.setToken(token);
          auth.setSigned(true);
-        }
-      }).catch((error) => {
+        }).catch(err => {
         showMessage({
           message: 'Ops!',
           description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
@@ -93,9 +80,6 @@ export default function Register() {
       })
     })
   }
-
-
-
   return(
     <LinearGradient
         colors={['#F0F0F0', '#ededed']}

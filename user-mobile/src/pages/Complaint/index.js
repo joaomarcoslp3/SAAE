@@ -16,9 +16,8 @@ import {Feather} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import api from '../../services/api';
-import * as Location from 'expo-location';
+import {reverseGeocodeAsync} from 'expo-location';
 import {LinearGradient} from 'expo-linear-gradient'
-import AuthContext from '../../provider/AuthProvider'
 
 
 
@@ -27,8 +26,6 @@ export default function Complaint() {
   const navigation = useNavigation();
   //dados
   const [text, setText] = useState('');
-  const [latitudeC, setLagitudeC] = useState('');
-  const [longitudeC, setLongitudeC] = useState('');
   const { latitude, longitude, setLatitude, setLongitude } = useContext(LocationContext);
   const [image, setImage] = useState(null);
   const [adress, setAdress] = useState('');
@@ -38,14 +35,11 @@ export default function Complaint() {
   const [opacity] = useState(new Animated.Value(0));
 
   useEffect(()=> {
-   setLagitudeC(JSON.stringify(latitude));
-   setLongitudeC(JSON.stringify(longitude));
-
     const coords = {latitude, longitude}
    
     async function ReverseGeocode(){
       if (latitude){
-        let result = await Location.reverseGeocodeAsync(coords);
+        const result = await reverseGeocodeAsync(coords)
         setAdress(result[0].street)
         setAdressNumber(result[0].name)
       }
@@ -73,12 +67,12 @@ export default function Complaint() {
   async function RegisterComplaint(){
     const user = await AsyncStorage.getItem('@SAAEapi:user');
     const jsonUser = JSON.parse(user);
-    if(text !== '' && latitudeC!==0){
+    if(text !== '' && latitude!==0){
       api.post(`/users/${jsonUser.id}/complaint/`, {
         complaint_text: text,
         complaint_picture: image,
-        complaint_latitude: latitudeC,
-        complaint_longitude: longitudeC
+        complaint_latitude: latitude,
+        complaint_longitude: longitude
       })
       showMessage({
         message: 'Sucesso!',
