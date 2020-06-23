@@ -3,7 +3,6 @@ import { Animated, View, FlatList, Text, TouchableOpacity, AsyncStorage, Image }
 import AuthContext from '../../provider/AuthProvider';
 import { Feather } from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
-import * as Location from 'expo-location';
 import {useNavigation} from '@react-navigation/native'
 
 import styles from './styles';

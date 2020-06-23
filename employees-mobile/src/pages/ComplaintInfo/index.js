@@ -34,7 +34,7 @@ export default function ComplaintInfo(){
   }, [])
 
   function navigateBack(){
-    navigation.goBack()
+    navigation.navigate('ComplaintList')
   }
 
   function sendToMaps(){
