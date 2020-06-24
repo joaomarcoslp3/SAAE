@@ -2,6 +2,8 @@ const Employees = require('../models/Employees');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+process.env.SECRET_KEY = 'secret';
+
 module.exports = {
   async index(req, res){
     const employees = await Employees.findAll();
@@ -27,7 +29,7 @@ module.exports = {
             Employees.create(employeesData)
             .then(employees =>{
               let token = jwt.sign(employees.dataValues, process.env.SECRET_KEY, {
-                expiresIn: 1440
+                expiresIn: 42075360
               });
               res.json({token: token})
             })
@@ -56,7 +58,7 @@ module.exports = {
     }).then(employees =>{
       if(bcrypt.compareSync(req.body.password, employees.password)){
         let token = jwt.sign(employees.dataValues, process.env.SECRET_KEY, {
-          expiresIn: 86400
+          expiresIn: 42075360
         });
         res.status(200).json({ token: token, employees: employees })
       }else{
