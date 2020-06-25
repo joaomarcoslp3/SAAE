@@ -170,7 +170,10 @@ export default function Complaint() {
           {image ? (
             <Image 
             source={{uri: image}}
-            style ={{width: '100%', height: '100%'}}
+            style ={{width: '100%', 
+            height: '100%', 
+            borderTopRightRadius: 7,
+            borderBottomRightRadius: 7}}
             />
           ) : (
             <Feather  name ="camera" size ={70} color='#004384'/>
