@@ -86,8 +86,14 @@ export default function Login() {
           ['@SAAEapi:user', JSON.stringify(user)]
         ]);
          auth.setToken(token);
-      }).catch(err => {
-        setErrorMsg('Id Eletrônico ou senha incorretos!')
+      }).catch((err) => {
+        if(err.response){
+          if(err.response.status === 404){
+            setErrorMsg('Id Eletrônico inexistente ou incorreto!')
+          }else{
+            setErrorMsg('Senha incorreta!')
+          }
+        }
       })
   }
 

@@ -28,16 +28,12 @@ module.exports = {
       email: req.body.email,
     };
 
-    const idElet = req.body.idElet;
-
-      const user = Users.findOne({
+      await Users.findOne({
         where: {
           idElet: req.body.idElet
         }
         }).then(user => {
-         if(idElet === ''){
-          res.status(400).json({ error: 'idElet cannot be null' })
-        }else if(!user){
+         if(!user){
             const hash = bcrypt.hashSync(userData.password, 10);
             userData.password = hash;
             Users.create(userData)
@@ -51,7 +47,7 @@ module.exports = {
               res.status(400).send('error:' + err)
             })
           }else{
-            res.status(400).json({ error: 'User already exists' })
+            res.status(406).json({ error: 'User already exists' })
           }
         })
           .catch(err => {
@@ -60,10 +56,10 @@ module.exports = {
       },
 
   async remove(req, res){ 
-    const users = await Users.destroy({where:{
+    await Users.destroy({where:{
         idElet: req.params.idElet
     }});
-    return res.json(users)
+    return res.json({state: 'Succeful'})
   },
   async auth(req, res){
     const user = Users.findOne({
@@ -82,7 +78,11 @@ module.exports = {
       }
     })
     .catch(err => {
-      res.status(400).send('error:' +err)
+      if(!user.dataValues){
+        res.status(404).json('User not foud')
+      }else{
+        res.status(400).send('error:' +err)
+      }
     })
   }
 }

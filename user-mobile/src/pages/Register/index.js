@@ -69,15 +69,28 @@ export default function Register() {
          
          auth.setToken(token);
          auth.setSigned(true);
-        }).catch(err => {
-        showMessage({
-          message: 'Ops!',
-          description: 'Ouve um erro em seu cadastro revise as informações e tente novamente',
-          type: 'danger',
-          duration: 2000,
-          titleStyle: { fontWeight: 'bold', fontSize: 20},
-          textStyle: {fontSize: 15} 
-      })
+        }).catch((err) => {
+          if(err.response){
+            if(err.response.status === 406){
+              showMessage({
+                message: 'Ops!',
+                description: 'Id Eletrônico já cadastrado, tente fazer login.',
+                type: 'danger',
+                duration: 3000,
+                titleStyle: { fontWeight: 'bold', fontSize: 20},
+                textStyle: {fontSize: 15} 
+              })
+            }else{
+              showMessage({
+                message: 'Ops!',
+                description: 'Ouve um erro em seu cadastro revise as informações e tente novamente.',
+                type: 'danger',
+                duration: 2000,
+                titleStyle: { fontWeight: 'bold', fontSize: 20},
+                textStyle: {fontSize: 15} 
+              })
+            }
+          }
     })
   }
   return(

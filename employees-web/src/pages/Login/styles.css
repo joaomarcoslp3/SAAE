@@ -21,3 +21,11 @@
 .icon {
   margin-right: 8px;
 }
+
+.error{
+  border-color: #FF0000;
+}
+
+small {
+  color: #FF0000
+}

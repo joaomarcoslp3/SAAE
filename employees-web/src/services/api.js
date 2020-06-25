@@ -19,6 +19,12 @@ export const login = employees =>{
     localStorage.setItem('user', JSON.stringify(res.data.employees));
     return res.data
   }).catch(err =>{
-    console.log(err);
+    if(err.response){
+      if(err.response.status === 404){
+        alert('Id do Funcionário incorreto ou não existente.')
+      }else{
+        alert('Senha incorreta.')
+      }
+    }
   })
-}
+} 

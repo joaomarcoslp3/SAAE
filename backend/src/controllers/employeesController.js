@@ -27,17 +27,11 @@ module.exports = {
             const hash = bcrypt.hashSync(employeesData.password, 10);
             employeesData.password = hash;
             Employees.create(employeesData)
-            .then(employees =>{
-              let token = jwt.sign(employees.dataValues, process.env.SECRET_KEY, {
-                expiresIn: 42075360
-              });
-              res.json({token: token})
-            })
-            .catch(err => {
-              res.status(400).send('error:' + err)
+            .then(employees => {
+              res.status(200).json(employees)
             })
           }else{
-            res.status(400).json({ error: 'Employees already exists' })
+            res.status(406).json({ error: 'Employeer already exists' })
           }
         })
           .catch(err => {
@@ -45,13 +39,13 @@ module.exports = {
           })
       },
   async remove(req, res){ 
-    const employees = await Employees.destroy({where:{
+    await Employees.destroy({where:{
         codFunc: req.params.codFunc
     }});
-    return res.json(employees)
+    return res.json({state: 'Succeful'})
   },
   async auth(req, res){
-    const employees = Employees.findOne({
+    const employeer = Employees.findOne({
       where:{
         codFunc: req.body.codFunc
       }
@@ -62,10 +56,14 @@ module.exports = {
         });
         res.status(200).json({ token: token, employees: employees })
       }else{
-        res.status(400).send('Wrong password')
+        res.status(400).json('Wrong password')
       }
     }).catch(err =>{
-      res.status(400).send('error:'+ err)
+      if(!employeer.dataValues){
+        res.status(404).json('Employeer not foud')
+      }else{
+        res.status(400).send('error:' +err)
+      }
     })
   }
   

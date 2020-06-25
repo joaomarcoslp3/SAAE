@@ -93,8 +93,14 @@ export default function Login() {
         ]);
          
          auth.setToken(token);
-        }).catch(err => {
-          setErrorMsg('Código de Funcionário ou senha incorretos!')
+        }).catch((err) => {
+          if(err.response){
+            if(err.response.status === 404){
+              setErrorMsg('Código de Funcionário inexistente ou incorreto!')
+            }else{
+              setErrorMsg('Senha incorreta!')
+            }
+          }
         }) 
   }
 
