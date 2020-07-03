@@ -1,8 +1,7 @@
 const Employees = require('../models/Employees');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-process.env.SECRET_KEY = 'secret';
+require ('dotenv').config()
 
 module.exports = {
   async index(req, res){
