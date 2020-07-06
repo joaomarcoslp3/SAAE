@@ -1,13 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack'
 
 import { Feather } from '@expo/vector-icons';
 
 const AppTab = createBottomTabNavigator();
 
 import SAAEweb from '../pages/SAAEweb';
-import SettingsPage from '../pages/SettingsPage';
+import ProfilePage from '../pages/ProfilePage';
 import ComplaintRoutes from './complaint.routes';
 
 
@@ -21,9 +20,9 @@ export default function AppRoutes(){
       lib: Feather,
       name: 'file-plus'
     },
-    SettingsPage: {
+    ProfilePage: {
       lib: Feather,
-      name: 'settings'
+      name: 'user'
     }
   }
 
@@ -54,9 +53,9 @@ export default function AppRoutes(){
         component = {SAAEweb} 
         options={{title: "2ª Via"}}/>
         <AppTab.Screen 
-        name = "SettingsPage" 
-        component = {SettingsPage} 
-        options={{title: "Configurações"}}/>
+        name = "ProfilePage" 
+        component = {ProfilePage} 
+        options={{title: "Perfil"}}/>
     </AppTab.Navigator>
   )
 }
