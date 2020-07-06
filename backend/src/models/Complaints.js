@@ -7,14 +7,14 @@ class Complaint extends Model {
       complaint_picture: DataTypes.CHAR,
       complaint_latitude: DataTypes.STRING,
       complaint_longitude: DataTypes.STRING,
-      complaint_state: DataTypes.TINYINT,
     }, {
       sequelize
     })
   }
 
   static associate(models) {
-    this.belongsTo(models.Users, {  foreignKey: 'user_id', as: 'user' })
+    this.belongsTo(models.Users, { foreignKey: 'user_id', as: 'user' });
+    this.belongsTo(models.ComplaintState, { foreignKey: 'complaint_state_id', as: 'complaint_state'})
   }
 }
 

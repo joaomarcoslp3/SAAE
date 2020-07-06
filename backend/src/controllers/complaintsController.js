@@ -1,8 +1,10 @@
+const sequelize = require('sequelize')
 const User = require('../models/Users');
 const Complaints = require('../models/Complaints');
+const Complaint_state = require('../models/Complaint_state');
+
 
 module.exports ={
-
   async index(req, res){
     const complaint = await Complaints.findAll();
 
@@ -10,7 +12,9 @@ module.exports ={
   },
   async findUnsolved(req, res){
     const complaint = await Complaints.findAll({where: {
-      complaint_state: false
+      complaint_state_id: {
+        [sequelize.Op.not]: '3'
+      }
     }})
 
     return res.status(200).json(complaint)
@@ -18,7 +22,7 @@ module.exports ={
   async store(req, res) {
     
     const { user_id } = req.params;
-    const { complaint_text, complaint_picture, complaint_latitude, complaint_longitude, complaint_state } = req.body;
+    const { complaint_text, complaint_picture, complaint_latitude, complaint_longitude, complaint_state_id } = req.body;
 
     const user = await User.findByPk(user_id);
 
@@ -31,7 +35,7 @@ module.exports ={
       complaint_picture,
       complaint_latitude,
       complaint_longitude,
-      complaint_state,
+      complaint_state_id,
       user_id
     });
 
@@ -58,7 +62,7 @@ module.exports ={
     },
     async setSolved(req, res){
       const {id} = req.params;
-      const { complaint_state } = req.body;
+      const { complaint_state_id } = req.body;
       Complaints.update(req.body, {
         where: {
           id
