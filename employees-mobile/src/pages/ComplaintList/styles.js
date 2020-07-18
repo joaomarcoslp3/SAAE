@@ -47,7 +47,7 @@ export default StyleSheet.create({
   complaintValue: {
     marginTop: 8,
     fontSize: 15,
-    marginBottom: 24,
+    marginBottom: 15,
     color: '#303036'
   },
   infoButton: {
@@ -58,6 +58,10 @@ export default StyleSheet.create({
   infoButtonText: {
     color: '#004384',
     fontSize: 15,
+    fontWeight: 'bold'
+  },
+  newComplaint: {
+    color: '#228B22',
     fontWeight: 'bold'
   }
 });

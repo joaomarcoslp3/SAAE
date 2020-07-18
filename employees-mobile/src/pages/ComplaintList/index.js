@@ -84,6 +84,18 @@ export default function ComplaintList(){
           <Text style={styles.complaintProperty}>Motivo da Reclamação:</Text>
           <Text style={styles.complaintValue}>{complaint.complaint_text}</Text>
 
+          <Text style={styles.complaintProperty}>Estado da Reclamação</Text>
+          {complaint.complaint_state_id === 1 
+          ? (
+          <Text style={[styles.complaintValue, styles.newComplaint]}>Nova</Text> 
+          )
+          : complaint.complaint_state_id === 2 
+          ? (
+          <Text style={styles.complaintValue}>Resolvendo</Text> 
+          )
+          : null
+          }
+
           <TouchableOpacity style={styles.infoButton} onPress={() => navigateToInfo(complaint)}>
             <Text style={styles.infoButtonText}>Ver mais detalhes</Text>
             <Feather name ="arrow-right" size ={17} color="#004384"/>

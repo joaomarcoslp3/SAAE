@@ -13,7 +13,7 @@ module.exports ={
   async findUnsolved(req, res){
     const complaint = await Complaints.findAll({where: {
       complaint_state_id: {
-        [sequelize.Op.not]: '3'
+        [sequelize.Op.notBetween]: [3, 4]
       }
     }})
 
