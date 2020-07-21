@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Picker } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {showMessage} from 'react-native-flash-message';
 import { showLocation } from 'react-native-map-link';
 import * as Location from 'expo-location';
 import api from '../../services/api'
-import {LinearGradient} from 'expo-linear-gradient'
+import {LinearGradient} from 'expo-linear-gradient';
 
 
 import styles from './styles';
@@ -16,8 +16,13 @@ export default function ComplaintInfo(){
   const route = useRoute();
   const [adress, setAdress] = useState('');
   const [adressNumber, setAdressNumber] = useState('');
-
-  const complaint = route.params.complaint
+  const [selectedValue, setSelectedValue] = useState(null);
+  const complaint = route.params.complaint;
+  const complaintState = [
+    {label: "NOVA", value: 1},
+    {label: "EM ATENDIMENTO", value: 2},
+    {label: "RESOLVIDA", value: 3}
+  ]
 
   useEffect(()=> {
     const coords = {latitude: Number(complaint.complaint_latitude), longitude: Number(complaint.complaint_longitude)}
@@ -30,7 +35,10 @@ export default function ComplaintInfo(){
         setAdressNumber(result[0].name)
       }
     }
-    ReverseGeocode()
+    ReverseGeocode();
+  }, []);
+  useEffect(() => {
+    setSelectedValue(complaint.complaint_state_id);
   }, [])
 
   function navigateBack(){
@@ -47,32 +55,44 @@ export default function ComplaintInfo(){
   }
 
   function changeToSolved(){
-    api.put(`/complaint/${complaint.id}`, {
-      "complaint_state": true
-    }).then(res => {
-      if(res.status ===400){
-        showMessage({
-          message: 'Ops!',
-          description: 'Houve um erro em nossos servidores, tente novamente mais tarde.',
-          backgroundColor: '#FF0000',
-          titleStyle: { fontWeight: 'bold', fontSize: 20},
-          textStyle: {fontSize: 15},
-          color: '#FFF',
-          floating: true,
-          duration: 2000
-        })
-      }else{
+    if(selectedValue === complaint.complaint_state_id){
       showMessage({
-        message: 'Sucesso',
-        description: 'Essa reclamação está marcada como resolvida',
-        backgroundColor: '#228B22',
+        message: 'Ops!',
+        description: 'Você não pode marcar que a reclamação se encontra no mesmo encontrado no nosso sistema.',
+        backgroundColor: '#FF0000',
         titleStyle: { fontWeight: 'bold', fontSize: 20},
         textStyle: {fontSize: 15},
         color: '#FFF',
         floating: true,
         duration: 2000
       })
-    }})
+    }else{
+      api.put(`/complaint/${complaint.id}`, {
+        "complaint_state_id": selectedValue
+      }).then(res => {
+        showMessage({
+          message: 'Sucesso',
+          description: 'Essa reclamação está marcada como resolvida',
+          backgroundColor: '#228B22',
+          titleStyle: { fontWeight: 'bold', fontSize: 20},
+          textStyle: {fontSize: 15},
+          color: '#FFF',
+          floating: true,
+          duration: 2000
+        })
+          }).catch((err) => {
+            showMessage({
+              message: 'Ops!',
+              description: 'Houve um erro em nossos servidores, tente novamente mais tarde.',
+              backgroundColor: '#FF0000',
+              titleStyle: { fontWeight: 'bold', fontSize: 20},
+              textStyle: {fontSize: 15},
+              color: '#FFF',
+              floating: true,
+              duration: 2000
+          })
+        })
+    }
   }
 
 
@@ -107,10 +127,22 @@ export default function ComplaintInfo(){
           </View>
         </View>
         <View style={styles.solvedView}>
-          <TouchableOpacity style={styles.solvedBtn} onPress ={changeToSolved}>
-            <Feather name="check-circle" size ={20} color='#FFF'/>
-            <Text style={styles.actionText}>   Marcar como resolvido</Text>
-          </TouchableOpacity>
+          <View style={styles.picker}>
+            <Picker
+            iosHeader="Selecione o estado dessa reclamação"
+            selectedValue={selectedValue}
+            style={styles.solvedBtn}
+            mode={"dropdown"}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
+              {complaintState.map(state => (
+                <Picker.Item key={state.value} label={state.label} value={state.value} />
+                ))}
+          </Picker>
+        </View>
+        <TouchableOpacity style={styles.checkButton} onPress={changeToSolved}>
+          <Feather name="check-circle" size ={20} color='#FFF'/>
+        </TouchableOpacity>
         </View>
     </LinearGradient>
   )

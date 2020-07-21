@@ -87,11 +87,11 @@ export default function ComplaintList(){
           <Text style={styles.complaintProperty}>Estado da Reclamação</Text>
           {complaint.complaint_state_id === 1 
           ? (
-          <Text style={[styles.complaintValue, styles.newComplaint]}>Nova</Text> 
+          <Text style={[styles.complaintValue, styles.newComplaint]}>NOVA</Text> 
           )
           : complaint.complaint_state_id === 2 
           ? (
-          <Text style={styles.complaintValue}>Resolvendo</Text> 
+          <Text style={styles.complaintValue}>EM ATENDIMENTO</Text> 
           )
           : null
           }

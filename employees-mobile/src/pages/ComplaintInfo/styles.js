@@ -72,16 +72,32 @@ export default StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 10,
+    bottom: 0,
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },  
   solvedBtn: {
-    flexDirection: 'row',
-    backgroundColor: '#228B22',
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    borderRadius: 8,
+    backgroundColor: '#004384',
+    color: '#FFF',
   },
+  picker: {
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#bdc3c7', 
+    overflow: 'hidden',
+    width: '82%'
+  },
+  checkButton: {
+    height: 50,
+    backgroundColor: '#228B22',
+    borderRadius: 10,
+    width: '15%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 });
