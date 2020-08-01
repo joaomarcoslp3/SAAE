@@ -62,7 +62,7 @@ export default function ComplaintList(){
       <View style={styles.header}>
         <Image source = {require('../../assets/logo.png')} style={styles.headerImg}/>
         <TouchableOpacity style={styles.logoutBtn} onPress={_logout}>
-          <Feather name = "power" size ={24} color = '#004384'/>
+          <Feather name = "log-out" size ={24} color = '#004384'/>
         </TouchableOpacity>
       </View>
 
