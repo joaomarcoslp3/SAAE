@@ -1,5 +1,5 @@
 import React,  {useState, useEffect} from 'react';
-import {register} from '../../services/api'; 
+import api from '../../services/api'; 
 import {useHistory} from 'react-router-dom';
 import './styles.css'
 
@@ -7,6 +7,7 @@ export default function Register(){
   const [name, setName] = useState('')
   const [codFunc, setCodFunc] = useState('')
   const [password, setPassword] = useState('');
+  const [codErrorMsg, setCodErrorMsg] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -17,19 +18,26 @@ export default function Register(){
 
   function _register(e){
     e.preventDefault();
-    
-    const employees = {
-      name: name,
-      codFunc: codFunc,
-      password: password,
-    }
 
-    register(employees).then(res => {
+    setTimeout(() => {
+      history.push('/register-complete')
+    }, 500);
 
-      history.push(`/home`)
-    }).catch((err) => {
-      alert('Houve um erro em sua requisição, tente novamente.')
-    })
+      // api.post('/employees/create', {
+      //   name,
+      //   codFunc,
+      //   password
+      // }).then(res =>{
+      //   setTimeout(() => {
+      //     history.push('/register-complete')
+      //   }, 100);
+      // }).catch(err => {
+      //   if(err.response){
+      //     if(err.response.status === 406){
+      //       setCodErrorMsg('Código de Funcionário já utilizado.')
+      //     }
+      //   }
+      // })
   }
     return(
       <div className="container">
@@ -56,8 +64,10 @@ export default function Register(){
                     name = "codFunc"
                     placeholder="Insira o Código do Funcionário"
                     value={codFunc}
+                    className={codErrorMsg ? "error" : null}
                     onChange = {e => setCodFunc(e.target.value)}
                    />
+                   <span>{codErrorMsg}</span>
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Senha:</label>

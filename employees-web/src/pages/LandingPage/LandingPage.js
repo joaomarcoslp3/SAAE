@@ -16,6 +16,7 @@ export default function LandingPage() {
   }, [history])
 
     return (
+      
       <div className="container">
         <div className="jumbotron mt-5 welcome">
           <h1 className="text-center">

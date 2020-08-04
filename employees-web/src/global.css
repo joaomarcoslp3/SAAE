@@ -31,3 +31,12 @@ form input {
   padding: 0 24px
 }
 
+.error{
+  border-color: #FF0000;
+}
+
+span {
+  color: #FF0000;
+  padding-top: 10px;
+}
+
