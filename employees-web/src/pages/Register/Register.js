@@ -19,9 +19,7 @@ export default function Register(){
   function _register(e){
     e.preventDefault();
 
-    setTimeout(() => {
-      history.push('/register-complete')
-    }, 500);
+      setCodErrorMsg('Código de Funcionário já utilizado.')
 
       // api.post('/employees/create', {
       //   name,
@@ -58,7 +56,7 @@ export default function Register(){
                    />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="codFunc">Código de Funcionário:</label>
+                  <label htmlFor="codFunc">Código do Funcionário:</label>
                   <br/>
                    <input type="text"
                     name = "codFunc"
@@ -74,7 +72,7 @@ export default function Register(){
                   <br/>
                    <input type="password"
                     name = "password"
-                    placeholder="Insira sua Senha"
+                    placeholder="Insira a senha do Funcionário"
                     value={password}
                     onChange = {e => setPassword(e.target.value)}
                    />
