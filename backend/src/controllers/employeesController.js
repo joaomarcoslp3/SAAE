@@ -1,7 +1,7 @@
 const Employees = require('../models/Employees');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require ('dotenv').config()
+require ('dotenv').config();
 
 module.exports = {
   async index(req, res){
@@ -36,12 +36,22 @@ module.exports = {
           .catch(err => {
             res.status(400).send('error:' + err)
           })
-      },
-  async remove(req, res){ 
-    await Employees.destroy({where:{
+  },
+  async remove(req, res){   
+    Employees.findOne({
+      where: {
         codFunc: req.params.codFunc
-    }});
-    return res.json({state: 'Succeful'})
+      }
+      }).then(employeer => {
+        if(!employeer){
+          return res.status(400).json({error: 'User do not exists'})
+        }else{
+          Employees.destroy({where:{
+            codFunc: req.params.codFunc
+        }});
+        return res.json({state: 'success'})
+        }
+      })
   },
   async auth(req, res){
     const employeer = Employees.findOne({

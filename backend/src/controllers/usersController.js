@@ -52,14 +52,25 @@ module.exports = {
           .catch(err => {
             res.status(400).send('error:' + err)
           })
-      },
+  },
 
   async remove(req, res){ 
-    await Users.destroy({where:{
-        idElet: req.params.idElet
-    }});
-    return res.json({state: 'Succeful'})
+    Users.findOne({
+      where: {
+        codFunc: req.params.idElet
+      }
+      }).then(user => {
+        if(!user){
+          return res.status(400).json({error: 'User do not exists'})
+        }else{
+          Users.destroy({where:{
+            idElet: req.params.idElet
+        }});
+        return res.json({state: 'success'})
+        }
+      })
   },
+  
   async auth(req, res){
     const user = Users.findOne({
       where: {
