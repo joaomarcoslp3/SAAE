@@ -1,5 +1,4 @@
 .background {
-  background-color: #32BC43;
   position: absolute;
   top: 0;
   left: 0;
@@ -18,6 +17,6 @@
 }
 
 .center img {
-  height: 400px;
-  width: 500px;
+  height: 250px;
+  width: 833px;
 }

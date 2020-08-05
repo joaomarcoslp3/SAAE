@@ -25,8 +25,9 @@
   width: 40px;
 }
 
-img {
+.navbar img {
   height: 45px;
+  box-shadow: 0px 0px 5px #012e59;
 }
 
 text{

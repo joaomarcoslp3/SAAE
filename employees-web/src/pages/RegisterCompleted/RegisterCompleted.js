@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useHistory} from 'react-router-dom';
 
 import './styles.css'
@@ -10,7 +10,7 @@ export default function RegisterCompleted() {
 
   setTimeout(() => {
     history.push(`/home`)
-  }, 1000);
+  }, 1800);
   return(
     <div className="background">
       <div className="center">
