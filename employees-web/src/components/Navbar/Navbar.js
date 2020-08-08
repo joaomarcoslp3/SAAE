@@ -1,48 +1,19 @@
-import React,  {Component} from 'react';
-import { Link, withRouter } from 'react-router-dom'
+import React,  {useContext} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
-import icon from '../../assets/icon.png'
+import icon from '../../assets/icon.png';
+import {AuthContext} from '../../provider/AuthProvider';
 
-class Navbar extends Component{
-  logOut(e){
+export default function Navbar() {
+  const {setSigned} = useContext(AuthContext); 
+  const history = useHistory();
+
+  function logOut(e){
     e.preventDefault();
     localStorage.removeItem('emptoken');
-    this.props.history.push('/');
+    history.push('/');
+    setSigned(false);
   }
-  render() { 
-    const loginRegLink= (
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link to ="/"className="navName">
-              Login
-            </Link>
-          </li>
-        </ul>
-    )
-    const empLink= (
-    <>
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/home" className="navName">
-            Início
-          </Link>
-          </li>
-      </ul>
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to ="/register"className="navName">
-              Registrar Novo Funcionário
-          </Link>
-        </li>
-        <li className="nav-item">
-          <text onClick={this.logOut.bind(this)} className = "navName">
-            Logout
-          </text>
-        </li>
-      </ul>
-      </>
-    )
-
     return (
       <nav className="navbar navbar-expand-lg navbar-dark navBackground">
         <button className="navbar-toggler navBarToogleColor"
@@ -58,11 +29,41 @@ class Navbar extends Component{
         <img src={icon} alt ="icon"/>
         <div className="collapse navbar-collapse justify-content-md-center"
           id ="navbar1">
-        {localStorage.emptoken ? empLink : loginRegLink }
+        {localStorage.emptoken ? (
+          <>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/home" className="navName">
+                Início
+              </Link>
+              </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to ="/register"className="navName">
+                  Registrar Novo Funcionário
+              </Link>
+            </li>
+            <li className="nav-item">
+              <text onClick={logOut} className = "navName">
+                Logout
+              </text>
+            </li>
+          </ul>
+          </>
+        ) : (
+          <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link to ="/"className="navName">
+              Login
+            </Link>
+          </li>
+        </ul>
+        ) }
         </div>
       </nav>
     )
-  }
 }
 
-export default withRouter(Navbar)
+
+

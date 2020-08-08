@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../../services/api';
 import './styles.css';
 import {useHistory} from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
+import {AuthContext} from '../../provider/AuthProvider';
 
 
 export default function Login() {
+  const {signed, setSigned} = useContext(AuthContext);
   const [codFunc, setCodFunc] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
   const [codErrorMsg, setCodErrorMsg] = useState('');
   const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+  const history = useHistory();
 
-  useEffect(()=> {
-    if(localStorage.getItem('emptoken') !== null){
-      history.push('/home')
-    }
-  }, [history])
 
   function _login(e) {
     e.preventDefault();
@@ -32,20 +29,21 @@ export default function Login() {
     }).then(res =>{
       localStorage.setItem('emptoken', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.employees));
-      history.push(`/home`)
+      setSigned(true);
+      history.push('/home');
     }).catch(err =>{
       if(err.response){
         if(err.response.status === 404){
-          // alert('Id do Funcionário incorreto ou não existente.')
           setCodErrorMsg('Id do Funcionário incorreto ou não existente.')
           setPasswordErrorMsg('')
         }else{
-          // alert('Senha incorreta.')
           setPasswordErrorMsg('Senha incorreta.')
           setCodErrorMsg('')
         }
       }
     })
+
+    console.log(signed);
   }
 
   return (
@@ -60,6 +58,7 @@ export default function Login() {
               <label htmlFor="codFunc">Código de Funcionário:</label>
               <br></br>
               <input type="text"
+                // eslint-disable-next-line no-sequences
                 className={"from-control", codErrorMsg ? "error" : null}
                 name="codFunc"
                 placeholder="Insira seu Código"
@@ -72,6 +71,7 @@ export default function Login() {
               <label htmlFor="password">Senha:</label>
               <br></br>
               <input type="password"
+                // eslint-disable-next-line no-sequences
                 className={"from-control", passwordErrorMsg ? "error" : null}
                 name="password"
                 placeholder="Insira sua Senha"

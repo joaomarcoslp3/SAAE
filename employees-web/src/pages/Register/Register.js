@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import api from '../../services/api';
 import { useHistory } from 'react-router-dom';
 import './styles.css'
@@ -10,11 +10,7 @@ export default function Register() {
   const [codErrorMsg, setCodErrorMsg] = useState('');
   const history = useHistory();
 
-  useEffect(() => {
-    if (localStorage.getItem('emptoken') === null) {
-      history.push('/')
-    }
-  }, [history])
+
 
   function _register(e) {
     e.preventDefault();

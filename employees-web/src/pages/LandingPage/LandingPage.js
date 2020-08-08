@@ -7,9 +7,6 @@ export default function LandingPage() {
   const history = useHistory();
   
   useEffect(()=> {
-    if(localStorage.getItem('emptoken') === null){
-      history.push('/')
-    }
     const employeer = localStorage.getItem('user');
     const jsonEmployeer = JSON.parse(employeer);
     setName(jsonEmployeer.name);

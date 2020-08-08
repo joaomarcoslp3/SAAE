@@ -1,28 +1,25 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 
 import './global.css'
 
+import {AuthProvider} from './provider/AuthProvider'
 import Navbar from './components/Navbar/Navbar';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
-import LandingPage from './pages/LandingPage/LandingPage';
-import RegisterComplete from './pages/RegisterCompleted/RegisterCompleted';
+import Routes from './routes';
 
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Navbar/>
-        <Route exact path = "/" component = {Login}/>
-        <div className="container">
-        <Route exact path = "/home" component = {LandingPage}/>
-        <Route exact path = "/register" component = {Register}/>
-        <Route exact path = "/register-complete" component = {RegisterComplete}/>
+  return (  
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Navbar/>
+          <div className="container">
+            <Routes/>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 
