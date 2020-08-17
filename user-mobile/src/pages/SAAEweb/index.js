@@ -25,6 +25,7 @@ export default function SAAEweb() {
        ref={wvRef}
        startInLoadingState = { true } 
        scalesPageToFit= {false}
+       allowUniversalAccessFromFileURLs={true}
        javaScriptEnabled={true}
        onNavigationStateChange={navState => {
          if(navState.url==='http://autoatendimento.prosanearinfo.com.br/v5.0/principal.php'){

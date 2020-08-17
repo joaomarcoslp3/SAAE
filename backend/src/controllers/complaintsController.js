@@ -48,10 +48,8 @@ module.exports ={
     const user = await User.findByPk(user_id, {
       include: { association: 'complaints' }
     });
-
-    return res.json(user)
-    //para achar apenas as reclamações use o código abaixo
-    //return res.json(user.complaints)
+    
+    return res.json(user.complaints)
     
     },
     async remove(req, res){ 
