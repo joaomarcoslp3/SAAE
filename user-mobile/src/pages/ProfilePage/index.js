@@ -20,6 +20,7 @@ export default function ProfilePage() {
 
   async function loadComplaints(){
     const res = await api.get(`/users/${userId}/complaint/findOne`);
+    
     setComplaints(res.data);
     setLoading(false)
   }
@@ -56,7 +57,7 @@ export default function ProfilePage() {
    }, []);
 
   function navigateToInfo(complaint){
-    navigation.navigate('ComplaintInfo', {complaint})
+    navigation.navigate('userComplaintInfo', {complaint})
   }
   async function _logout (){
     await AsyncStorage.removeItem('@SAAEapi:token');
@@ -88,13 +89,13 @@ export default function ProfilePage() {
           keyExtractor ={complaint => String(complaint.id)}
           showsVerticalScrollIndicator = {false}
           renderItem = {({ item: complaint })=> (
-          <View style={styles.complaint}>
-            <Text style={styles.complaintProperty}>Motivo da Reclamação:</Text>
-            <Text style={styles.complaintValue}>{complaint.complaint_text}</Text>
+          <View style={[styles.complaint, complaint.complaint_state_id === 4 ? styles.disabledBox : complaint.complaint_state_id === 1 ? styles.solvedBox : null ]}>
+            <Text style={[styles.complaintProperty, complaint.complaint_state_id === 4 ? styles.disabledText : null ]}>Motivo da Reclamação:</Text>
+            <Text style={[styles.complaintValue, complaint.complaint_state_id === 4 ? styles.disabledText : null ]}>{complaint.complaint_text}</Text>
   
             <TouchableOpacity style={styles.infoButton} onPress={() => navigateToInfo(complaint)}>
-              <Text style={styles.infoButtonText}>Ver mais detalhes</Text>
-              <Feather name ="arrow-right" size ={17} color="#004384"/>
+              <Text style={[styles.infoButtonText, , complaint.complaint_state_id === 4 ? styles.disabledButton : null ]}>Ver mais detalhes</Text>
+              <Feather name ="arrow-right" size ={17} color={complaint.complaint_state_id === 4 ? '#35AAFF' : '#004384'}/>
             </TouchableOpacity>
           </View> 
           )}

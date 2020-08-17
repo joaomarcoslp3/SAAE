@@ -22,7 +22,7 @@ export default StyleSheet.create({
     padding: 24,
     borderRadius: 8,
     backgroundColor: '#b4c4d4',
-    marginBottom: 16
+    marginBottom: 16,
   },
   complaintProperty: {
     fontSize: 14,
@@ -69,4 +69,18 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  disabledBox: {
+    backgroundColor: '#5C6366'
+  },
+  disabledText: {
+    color: '#FFF'
+  },
+  disabledButton: {
+    color: '#35AAFF'
+  },
+  solvedBox: {
+    borderColor: '#228B22',
+    borderWidth: 3, 
+    overflow: 'hidden',
+  }
 });

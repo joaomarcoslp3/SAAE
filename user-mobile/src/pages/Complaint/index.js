@@ -35,14 +35,15 @@ export default function Complaint() {
   const [opacity] = useState(new Animated.Value(0));
 
   async function ReverseGeocode(){
-      const result = await reverseGeocodeAsync(coords)
-      setAdress(result[0].street)
-      setAdressNumber(result[0].name)
+    const coords = {latitude, longitude}
+    if(latitude) {
+        const result = await reverseGeocodeAsync(coords)
+        setAdress(result[0].street)
+        setAdressNumber(result[0].name)
+      }
     }
 
   useEffect(()=> {
-    const coords = {latitude, longitude}
-
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -54,10 +55,8 @@ export default function Complaint() {
         duration: 200,
       })
     ]).start();
-    
-    if(latitude){
       ReverseGeocode()
-    }
+
   })
 
   function navigateToMap(){
