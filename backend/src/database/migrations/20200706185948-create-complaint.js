@@ -37,7 +37,7 @@ module.exports = {
         references: { model: 'complaint_state', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        defaultValue: 1
+        defaultValue: 2
       },
       createdAt: {
         allowNull: false,

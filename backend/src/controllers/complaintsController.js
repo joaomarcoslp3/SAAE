@@ -13,7 +13,7 @@ module.exports ={
   async findUnsolved(req, res){
     const complaint = await Complaints.findAll({where: {
       complaint_state_id: {
-        [sequelize.Op.notBetween]: [3, 4]
+        [sequelize.Op.not]: [1, 4]
       }
     }})
 
@@ -46,10 +46,14 @@ module.exports ={
 
     const { user_id } = req.params;
     const user = await User.findByPk(user_id, {
-      include: { association: 'complaints' }
-    });
+      include: { association: 'complaints' },
+    }
+    );
+    const order= user.complaints.sort(function(a, b){
+        return a.complaint_state_id-b.complaint_state_id
+  })
     
-    return res.json(user.complaints)
+    return res.json(order)
     
     },
     async remove(req, res){ 

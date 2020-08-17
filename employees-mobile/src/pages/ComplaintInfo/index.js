@@ -19,9 +19,9 @@ export default function ComplaintInfo(){
   const [selectedValue, setSelectedValue] = useState(null);
   const complaint = route.params.complaint;
   const complaintState = [
-    {label: "NOVA", value: 1},
-    {label: "EM ATENDIMENTO", value: 2},
-    {label: "RESOLVIDA", value: 3}
+    {label: "NOVA", value: 2},
+    {label: "EM ATENDIMENTO", value: 3},
+    {label: "RESOLVIDA", value: 1}
   ]
 
   useEffect(()=> {
@@ -71,8 +71,8 @@ export default function ComplaintInfo(){
         "complaint_state_id": selectedValue
       }).then(res => {
         showMessage({
-          message: 'Sucesso',
-          description: 'Essa reclamação está marcada como resolvida',
+          message: 'Sucesso!',
+          description: 'O estado dessa reclamação foi alterado com sucesso.',
           backgroundColor: '#228B22',
           titleStyle: { fontWeight: 'bold', fontSize: 20},
           textStyle: {fontSize: 15},
@@ -133,7 +133,7 @@ export default function ComplaintInfo(){
             selectedValue={selectedValue}
             style={styles.solvedBtn}
             mode={"dropdown"}
-            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            onValueChange={(itemValue) => setSelectedValue(itemValue)}
             >
               {complaintState.map(state => (
                 <Picker.Item key={state.value} label={state.label} value={state.value} />
