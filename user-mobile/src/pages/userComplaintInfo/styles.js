@@ -75,6 +75,9 @@ export default StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#b4c4d4',
     marginBottom: 15,
+    borderColor: '#228B22',
+    borderWidth: 3, 
+    overflow: 'hidden',
   },
   infoBoxTittle: {
     fontWeight: 'bold',

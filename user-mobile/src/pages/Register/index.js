@@ -69,6 +69,16 @@ export default function Register() {
          
          auth.setToken(token);
          auth.setSigned(true);
+          showMessage({
+                message: 'Sucesso!',
+                description: 'Cadastro realizado com sucesso.',
+                backgroundColor: '#228B22',
+                titleStyle: { fontWeight: 'bold', fontSize: 20 },
+                textStyle: { fontSize: 15 },
+                color: '#FFF',
+                floating: true,
+                duration: 2000
+              })
         }).catch((err) => {
           if(err.response){
             if(err.response.status === 406){

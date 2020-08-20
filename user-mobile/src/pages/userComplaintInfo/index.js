@@ -139,7 +139,7 @@ export default function userComplaintInfo() {
         complaint.complaint_state_id === 1 ?
           <View style={styles.infoBox}>
             <Text style={styles.infoBoxTittle}>Aviso.</Text>
-            <Text style={styles.infoBoxDescription}>Nossos funcionários já solucionaram sua reclamação, se tal solução não solucinou seu problema, aperte no X, se sim marque-a como resolvida.</Text>
+            <Text style={styles.infoBoxDescription}>Nossos funcionários já solucionaram sua reclamação, se tal solução não resolveu seu problema, aperte no X, se sim marque-a como resolvida.</Text>
           </View>
           :
           null

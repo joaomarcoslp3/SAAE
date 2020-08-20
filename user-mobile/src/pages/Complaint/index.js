@@ -185,7 +185,7 @@ export default function Complaint() {
           {adress ?
            <Text style = {styles.mapSubtitle}>{adress}, {adressNumber}</Text>
           : 
-          <Text style = {styles.mapSubtitle}>Clique ao lado para definir no mapa</Text>  
+          <Text style = {styles.mapSubtitle}>Clique ao lado para definir no mapa.</Text>  
         }
           
         </View>
