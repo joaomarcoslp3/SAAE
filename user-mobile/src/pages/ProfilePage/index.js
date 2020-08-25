@@ -106,7 +106,7 @@ export default function ProfilePage() {
         <TouchableOpacity onPress={_logout} style={styles.btnLogout}>
           <View style={styles.insideBtn}>
             <Feather name="log-out" size={22} color='#FFF' />
-            <Text style={styles.submitText}>Logout</Text>
+            <Text style={styles.submitText}>Sair</Text>
           </View>
         </TouchableOpacity>
       </View>

@@ -75,7 +75,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#b4c4d4',
     marginBottom: 15,
-    borderColor: '#228B22',
+    borderColor: '#004384',
     borderWidth: 3, 
     overflow: 'hidden',
   },

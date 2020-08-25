@@ -43,7 +43,9 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   registerText: { 
-    color: '#000'
+    color: '#004384',
+    fontWeight: "bold",
+    fontSize: 15
   },
   errorMsg:{
     color: '#000',

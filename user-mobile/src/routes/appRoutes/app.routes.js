@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 
 const AppTab = createBottomTabNavigator();
 
-import SAAEweb from '../../pages/SAAEweb';
+import WebRoutes from './web.routes';
 import ProfileRoutes from './profile.routes';
 import ComplaintRoutes from './complaint.routes';
 
@@ -50,7 +50,7 @@ export default function AppRoutes(){
         options={{title:"Reclamações"}}/>
       <AppTab.Screen 
         name = "SAAEweb" 
-        component = {SAAEweb} 
+        component = {WebRoutes} 
         options={{title: "2ª Via"}}/>
         <AppTab.Screen 
         name = "ProfilePage" 

@@ -6,30 +6,27 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#F0F0F0',
-    paddingTop: Constants.statusBarHeight + 15,
+    paddingTop: Constants.statusBarHeight + 5,
   },
   header: {
     paddingLeft: 20,
     flexDirection: 'row',
     alignContent: 'center'
   },
+  title: {
+    fontSize: 25,
+    marginBottom: 16,
+    color: '#004384',
+    fontWeight: 'bold'
+  },
   viewHT: {
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  headerText: {
-    fontSize: 20,
-    color: '#000',
-    alignItems: 'center'
-  },
-  headerBtn: {
-    alignItems: 'flex-start'
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 40,
     width: '100%',
     paddingBottom: 50
   },
@@ -54,7 +51,9 @@ export default StyleSheet.create({
   },
   submitText: {
     color: '#000',
-    fontSize: 18
+    fontSize: 18,
+    alignSelf: "flex-start",
+    paddingLeft: 22 
   },
   btnRegister: {
     marginTop: 10,
@@ -70,6 +69,15 @@ export default StyleSheet.create({
   subWithInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignSelf: 'flex-start'
+  },
+  backButton: {
+    marginTop: 10,
+  },
+  backButtonText: { 
+    color: '#004384',
+    fontWeight: "bold",
+    fontSize: 15
   }
 });

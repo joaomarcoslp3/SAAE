@@ -5,7 +5,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: Constants.statusBarHeight + 15,
+    paddingTop: Constants.statusBarHeight + 5,
     backgroundColor: '#F0F0F0',
   },
   title: {
@@ -62,6 +62,7 @@ export default StyleSheet.create({
     marginTop: 20,
   },
   submitText: {
+    marginLeft: 8,
     color: '#FFF',
     fontSize: 18
   },
@@ -79,7 +80,7 @@ export default StyleSheet.create({
     color: '#35AAFF'
   },
   solvedBox: {
-    borderColor: '#228B22',
+    borderColor: '#004384',
     borderWidth: 3, 
     overflow: 'hidden',
   }

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 55,
+    marginTop: 30,
     width: '100%',
     paddingBottom: 50
   },

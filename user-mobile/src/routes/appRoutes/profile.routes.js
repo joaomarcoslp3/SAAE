@@ -8,9 +8,9 @@ const ProfileStack = createStackNavigator();
 
 export default function ProfileRoutes(){
   return (
-    <ProfileStack.Navigator screenOptions = {{headerShown: false}}> 
-      <ProfileStack.Screen name = "Complaint" component = {ProfilePage}/>
-      <ProfileStack.Screen name = "userComplaintInfo" component = {userComplaintInfo}/>
+    <ProfileStack.Navigator screenOptions={{headerStyle:{backgroundColor: '#F0F0F0'}, headerTintColor: '#004384', title: 'SAAE'}}> 
+      <ProfileStack.Screen name = "Profile" component = {ProfilePage}/>
+      <ProfileStack.Screen name = "userComplaintInfo" component = {userComplaintInfo} options={{headerShown: false}}/>
     </ProfileStack.Navigator>
 )
 }

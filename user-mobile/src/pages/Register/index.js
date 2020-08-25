@@ -108,14 +108,8 @@ export default function Register() {
         colors={['#F0F0F0', '#ededed']}
         style={styles.background}
     >  
-      <View style = {styles.header}>
-        <View style = {styles.headerBtn}>
-        <TouchableOpacity onPress = { navigateToLogin}>
-          <Feather name = "arrow-left" size ={24} color = '#004384'/>
-        </TouchableOpacity>
-        </View>
-        <View style = {styles.viewHT}>
-        </View>
+     <View style={styles.header}>
+        <Text style={styles.title}>Cadastro</Text>
       </View>
 
       <Animated.View 
@@ -141,7 +135,7 @@ export default function Register() {
        <View style = { styles.subWithInfo}> 
         <Text style = {styles.submitText}>Insira seu Id Eletrônico </Text>
         <TouchableOpacity onPress = { navigateToRegisterInfo }>
-          <Feather name = "info" size = {18} color= "#004384" />
+          <Feather name = "help-circle" size = {18} color= "#004384" />
         </TouchableOpacity>
       </View> 
         <TextInput
@@ -180,6 +174,9 @@ export default function Register() {
 
         <TouchableOpacity  style = {styles.btnSubmit} onPress = {_register}> 
           <Text  style = {styles.registerText}>Criar Conta</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.backButton} onPress={navigateToLogin}>
+          <Text style={styles.backButtonText}>Já tem conta? Faça login.</Text>
         </TouchableOpacity>
       </Animated.View>
     </LinearGradient>
