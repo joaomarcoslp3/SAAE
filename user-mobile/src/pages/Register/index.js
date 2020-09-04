@@ -8,7 +8,7 @@ import {
   Text, 
   Animated,
   AsyncStorage,
-  Alert
+  Keyboard
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../../provider/AuthProvider';
@@ -18,15 +18,30 @@ import {showMessage} from 'react-native-flash-message'
 
 import api from '../../services/api';
 import styles from './styles'
+import Title from '../../components/Title';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [idElet, setIdElet] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [header, setHeader] = useState(true)
   const auth = useContext(AuthContext);
 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+  }, [])
+
+  function keyboardDidShow() {
+    setHeader(false)
+  }
+
+  function keyboardDidHide() {
+    setHeader(true)
+  }
 
   function navigateToLogin(){
     navigation.navigate('Login')
@@ -108,10 +123,8 @@ export default function Register() {
         colors={['#F0F0F0', '#ededed']}
         style={styles.background}
     >  
-     <View style={styles.header}>
-        <Text style={styles.title}>Cadastro</Text>
-      </View>
-
+    {header ? <Title name="Cadastro"/> : <></>}
+     
       <Animated.View 
         style = {[
           styles.container,

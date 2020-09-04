@@ -18,6 +18,7 @@ import * as Permissions from 'expo-permissions';
 import api from '../../services/api';
 import {reverseGeocodeAsync} from 'expo-location';
 import {LinearGradient} from 'expo-linear-gradient'
+import Title from '../../components/Title';
 
 
 
@@ -136,6 +137,7 @@ export default function Complaint() {
         colors={['#F0F0F0', '#ededed']}
         style={styles.background}
     >  
+    <Title name="Postar Ocorrência"/>
       <Animated.View 
         style = {[
           styles.container,
@@ -147,10 +149,11 @@ export default function Complaint() {
           }
         ]}
       >
-        <Text style = {styles.submitText}>Insira os dados de sua reclamação</Text>
+        
+        <Text style = {styles.submitText}>Insira os dados de sua ocorrência</Text>
         <TextInput
         style = {styles.input}
-        placeholder = "Insira aqui o motivo de sua reclamação"
+        placeholder = "Insira aqui o motivo de sua ocorrência"
         placeholderTextColor = '#A0A0B2'
         autoCorrect = { true }
         value = {text}
@@ -198,7 +201,7 @@ export default function Complaint() {
         
       <View style = {styles.btnView}>
         <TouchableOpacity style = {styles.btnSubmit}onPress = {RegisterComplaint}>
-          <Text style ={{color: '#FFF', fontSize: 16}}>Cadastrar Reclamação</Text>
+          <Text style ={{color: '#FFF', fontSize: 16}}>Cadastrar Ocorrência</Text>
         </TouchableOpacity>
       </View>
       </Animated.View>

@@ -8,17 +8,6 @@ export default StyleSheet.create({
     backgroundColor: '#F0F0F0',
     paddingTop: Constants.statusBarHeight + 5,
   },
-  header: {
-    paddingLeft: 20,
-    flexDirection: 'row',
-    alignContent: 'center'
-  },
-  title: {
-    fontSize: 25,
-    marginBottom: 16,
-    color: '#004384',
-    fontWeight: 'bold'
-  },
   viewHT: {
     justifyContent: 'center',
     alignItems: 'center'

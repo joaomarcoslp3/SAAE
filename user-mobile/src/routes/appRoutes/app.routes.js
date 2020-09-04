@@ -47,7 +47,7 @@ export default function AppRoutes(){
       <AppTab.Screen 
         name = "Complaint" 
         component = {ComplaintRoutes} 
-        options={{title:"Reclamações"}}/>
+        options={{title:"Ocorrências"}}/>
       <AppTab.Screen 
         name = "SAAEweb" 
         component = {WebRoutes} 

@@ -5,6 +5,7 @@ import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 
 import AuthContext from '../../provider/AuthProvider';
+import Title from '../../components/Title';
 import styles from './styles';
 import api from '../../services/api'
 
@@ -69,9 +70,7 @@ export default function ProfilePage() {
     colors={['#F0F0F0', '#ededed']}
     style={styles.container}
   >
-      <View style={styles.header}>
-        <Text style={styles.title}>Suas Reclamações</Text>
-      </View>
+      <Title name="Suas Ocorrências"/>
       {
         loading ?  
         <View style ={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
@@ -90,7 +89,7 @@ export default function ProfilePage() {
           showsVerticalScrollIndicator = {false}
           renderItem = {({ item: complaint })=> (
           <View style={[styles.complaint, complaint.complaint_state_id === 4 ? styles.disabledBox : complaint.complaint_state_id === 1 ? styles.solvedBox : null ]}>
-            <Text style={[styles.complaintProperty, complaint.complaint_state_id === 4 ? styles.disabledText : null ]}>Motivo da Reclamação:</Text>
+            <Text style={[styles.complaintProperty, complaint.complaint_state_id === 4 ? styles.disabledText : null ]}>Motivo da Ocorrência:</Text>
             <Text style={[styles.complaintValue, complaint.complaint_state_id === 4 ? styles.disabledText : null ]}>{complaint.complaint_text}</Text>
   
             <TouchableOpacity style={styles.infoButton} onPress={() => navigateToInfo(complaint)}>

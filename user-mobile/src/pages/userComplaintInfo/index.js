@@ -116,12 +116,6 @@ export default function userComplaintInfo() {
       colors={['#F0F0F0', '#ededed']}
       style={styles.container}
     >
-      <View style={styles.header}>
-        <Image source={require('../../assets/logo.png')} style={styles.headerImg} />
-        <TouchableOpacity style={styles.logoutBtn} onPress={navigateBack}>
-          <Feather name="arrow-left" size={28} color='#004384' />
-        </TouchableOpacity>
-      </View>
 
       <View style={styles.complaint}>
         <Text style={[styles.complaintProperty, { marginTop: 0 }]}>Motivo da Reclamação:</Text>
