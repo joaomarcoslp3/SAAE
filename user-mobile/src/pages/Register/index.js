@@ -28,12 +28,10 @@ export default function Register() {
   const [header, setHeader] = useState(true)
   const auth = useContext(AuthContext);
 
-  const navigation = useNavigation();
+  const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
+  const [opacity] = useState(new Animated.Value(0));
 
-  useEffect(() => {
-    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-  }, [])
+  const navigation = useNavigation();
 
   function keyboardDidShow() {
     setHeader(false)
@@ -49,11 +47,12 @@ export default function Register() {
   function navigateToRegisterInfo(){
     navigation.navigate('RegisterInfo')
   }
-  const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
-  const [opacity] = useState(new Animated.Value(0));
+  
 
   useEffect(()=>{
-    
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -102,6 +101,15 @@ export default function Register() {
                 description: 'Id Eletrônico já cadastrado, tente fazer login.',
                 type: 'danger',
                 duration: 3000,
+                titleStyle: { fontWeight: 'bold', fontSize: 20},
+                textStyle: {fontSize: 15} 
+              })
+            }else if (err.response.status === 422){
+              showMessage({
+                message: 'Ops!',
+                description: 'Id Eletrônico inválido',
+                type: 'danger',
+                duration: 2000,
                 titleStyle: { fontWeight: 'bold', fontSize: 20},
                 textStyle: {fontSize: 15} 
               })

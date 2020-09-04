@@ -1,6 +1,7 @@
 const Users = require('../models/Users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const idEletRegex = RegExp(/[0-9]+@+[0-9][0-9]/g);
 require ('dotenv').config();
 
 
@@ -33,6 +34,8 @@ module.exports = {
         }
         }).then(user => {
          if(!user){
+           const isValidId = idEletRegex.test(userData.idElet);
+           if(isValidId){
             const hash = bcrypt.hashSync(userData.password, 10);
             userData.password = hash;
             Users.create(userData)
@@ -45,6 +48,9 @@ module.exports = {
             .catch(err => {
               res.status(400).send('error:' + err)
             })
+          }else {
+            res.status(422).json({ error: 'Not valid Id Elet' })
+          }
           }else{
             res.status(406).json({ error: 'User already exists' })
           }

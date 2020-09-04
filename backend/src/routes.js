@@ -17,9 +17,9 @@ routes.post('/users/create',
 celebrate({
   body: Joi.object().keys({
     name: Joi.string().required(),
-    idElet: Joi.string().required().min(11).max(11),
+    idElet: Joi.string().required().min(11),
     password: Joi.string().required(),
-    email: Joi.string().required().email(),
+    email: Joi.string().email(),
   },)
 }, {
   abortEarly: false
