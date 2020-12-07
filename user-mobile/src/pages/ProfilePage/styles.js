@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    
+    paddingTop: 20,
     backgroundColor: '#F0F0F0',
   },
   complaintList: {

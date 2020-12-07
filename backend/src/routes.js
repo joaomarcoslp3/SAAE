@@ -19,7 +19,7 @@ celebrate({
     name: Joi.string().required(),
     idElet: Joi.string().required().min(11),
     password: Joi.string().required(),
-    email: Joi.string().email(),
+    email: Joi.string().email().optional(),
   },)
 }, {
   abortEarly: false

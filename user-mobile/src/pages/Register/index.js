@@ -25,7 +25,7 @@ export default function Register() {
   const [idElet, setIdElet] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [header, setHeader] = useState(true)
+  const [header, setHeader] = useState(true);
   const auth = useContext(AuthContext);
 
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));

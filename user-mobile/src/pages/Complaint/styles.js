@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants'
 
 export default StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: '#F0F0F0',
+    paddingTop: 20,
   },
   container: {
     flex: 1,
@@ -11,7 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginTop: 30,
     width: '100%',
-    paddingBottom: 50
+    paddingBottom: 50,
   },
 
   //input

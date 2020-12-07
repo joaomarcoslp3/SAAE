@@ -58,7 +58,7 @@ export default function MapScreen() {
     location.setLatitude(currentRegion.latitude);
     location.setLongitude(currentRegion.longitude)
 
-    navigation.navigate('Complaint')
+    navigation.navigate('Complaint');
   }
   function handleRegionChange(region){
     setCurrentRegion(region)

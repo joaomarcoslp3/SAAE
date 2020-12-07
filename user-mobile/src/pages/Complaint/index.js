@@ -7,6 +7,7 @@ import {
    TextInput,
    Image, 
    AsyncStorage,
+   Keyboard,
    Animated} from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -34,6 +35,15 @@ export default function Complaint() {
   //animação
   const [offset] = useState(new Animated.ValueXY({x: 0, y:95}));
   const [opacity] = useState(new Animated.Value(0));
+  const [header, setHeader] = useState(true);
+
+  function keyboardDidShow() {
+    setHeader(false)
+  }
+
+  function keyboardDidHide() {
+    setHeader(true)
+  }
 
   async function ReverseGeocode(){
     const coords = {latitude, longitude}
@@ -45,6 +55,8 @@ export default function Complaint() {
     }
 
   useEffect(()=> {
+    keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+    keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -137,7 +149,7 @@ export default function Complaint() {
         colors={['#F0F0F0', '#ededed']}
         style={styles.background}
     >  
-    <Title name="Postar Ocorrência"/>
+    {header ? <Title name="Postar Ocorrência"/> : <></>}
       <Animated.View 
         style = {[
           styles.container,
